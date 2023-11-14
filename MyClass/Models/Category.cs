@@ -13,6 +13,7 @@ namespace MyClass.Models
         public int CatID { get; set; }
         [Required(ErrorMessage = "Bắt buộc nhập tên danh mục")]
         public string CatName { get; set; }
+        [Required(ErrorMessage = "Bắt buộc nhập SeoTitle")]
         public string SeoTitle { get; set; }
         public DateTime CreatedDate { get; set; }
         [Required(ErrorMessage = "Bắt buộc chọn người tạo")]

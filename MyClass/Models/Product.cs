@@ -22,6 +22,7 @@ namespace MyClass.Models
         public int BrandID { get; set; }
         [Required(ErrorMessage = "Bắt buộc nhập giá")]
         public decimal Price { get; set; }
+        [Required(ErrorMessage = "Bắt buộc nhập giảm giá")]
         public decimal PromotionPrice { get; set; }
         public string ProductImage { get; set; }
         [Required(ErrorMessage = "Bắt buộc nhập số lượng")]
