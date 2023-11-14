@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "XemSP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+<h4><a href="/Admin/Product/ThemSP">Create New</a></h4>
+@model List<MyClass.Models.Product>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ProductName</th>
+            <th scope="col">ProductDes</th>
+            <th scope="col">MetaKeywords</th>
+            <th scope="col">ProductImage</th>
+            <th scope="col">CatName</th>
+            <th scope="col">BrandName</th>
+            <th scope="col">Price</th>
+            <th scope="col">PromotionPrice</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Warranty</th>
+            <th scope="col">Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.ProductDes</td>
+                <td>@item.MetaKeywords</td>
+                <td>
+                    <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
+                </td>
+                @foreach (var cat in ViewBag.listCategory)
+                {
+                    if (cat.CatID == item.CatID)
+                    {
+                        <td>@cat.CatName</td>
+                    }
+                }
+                @foreach (var brand in ViewBag.listBrand)
+                {
+                    if (brand.BrandID == item.BrandID)
+                    {
+                        <td>@brand.BrandName</td>
+                    }
+                }
+                <td>@item.Price</td>
+                <td>@item.PromotionPrice</td>
+                <td>@item.Quantity</td>
+                <td>@item.Warranty</td>
+                <td>@item.Active</td>
+                <td>
+                    <a href="/Admin/Product/SuaSP?ProductID=@item.ProductID" style="color:greenyellow">Edit</a>
+                    <a href="/Admin/Product/XoaSP?ProductID=@item.ProductID" style="color:greenyellow">Delete</a>
+                </td>
+            </tr>
+        }
+</table>

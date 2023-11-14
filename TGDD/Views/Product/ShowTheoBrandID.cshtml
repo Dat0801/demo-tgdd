@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "ShowTheoBrandID";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MyClass.Models
+@model List<Product>
+<center>
+    <ul style="list-style-type: none; margin-left: 40px; margin-top: 20px;">
+        @Html.Action("BrandPartial", "Brand", new { CatID = ViewBag.CatID })
+    </ul>
+</center>
+<ul class="listproduct" style="list-style-type:none; margin-left: 30px;">
+    @foreach (var item in Model)
+    {
+        <li class="item" style="width:250px; margin:10px; display:inline-block">
+            <a href="~/Product/Detail?ProductID=@item.ProductID" style="text-decoration:none;">
+                <div class="card" style="width:250px;">
+                    <div class="img-main">
+                        <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title-h3">@item.ProductName</h6>
+                        <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
+                        <strong class="price" style="color:red;">@item.PromotionPrice</strong>
+                        <div class="item-rating">
+                            <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                            <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                            <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                            <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                            <i class="fa fa-star " aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    }
+</ul>

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Sửa Brand";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model MyClass.Models.Brand
+<center><h2>Sửa Brand</h2></center>
+<form action="/Admin/Brand/SuaBrand?BrandID=@ViewBag.BrandID" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Sửa thành công</h5>
+        }
+        <div>
+            Tên brand
+            <input type="text" name="BrandName" class="form-control" value="@Model.BrandName" /><br />
+        </div>
+        <div>
+            Hình ảnh brand <br />
+            <img src="~/Content/img/logo/@Model.BrandImage" />
+            <br />
+            <br />
+            <input type="text" name="BrandImage" class="form-control" value="@Model.BrandImage" />
+        </div>
+        <br />
+        <div>
+            Danh mục
+            <select class="form-control" name="CatID">
+                @foreach (var cat in ViewBag.listCategory)
+                {
+                    if (Model.CatID == @cat.CatID)
+                    {
+                        <option value="@cat.CatID" selected>
+                            @cat.CatName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@cat.CatID">
+                            @cat.CatName
+                        </option>
+                    }
+
+                }
+
+            </select>
+        </div>
+        <br />
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                @if (@Model.Active)
+                {
+                    <option value="true" selected>True</option>
+                    <option value="false">False</option>
+                }
+                else
+                {
+                    <option value="true">True</option>
+                    <option value="false" selected>False</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Sửa</button></center>
+        </div>
+    </div>
+</form>
+<h5><a href="/Admin/Brand/XemBrand" style="margin-left: 50px;">Trở lại trang brand</a></h5>
+

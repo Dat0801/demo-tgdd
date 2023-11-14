@@ -1,0 +1,58 @@
+﻿@model MyClass.Models.Category 
+@{
+    ViewBag.Title = "ThemDanhMuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<center><h2>Thêm Danh Mục</h2></center>
+<form action="/Admin/Category/ThemDanhMuc" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        <div>
+            Tên danh mục
+            <input type="text" name="CatName" class="form-control" />
+            @Html.ValidationMessageFor(model => model.CatName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Hình ảnh danh mục
+            <input type="file" name="CategoryImage" class="form-control" />
+        </div>
+        <br />
+        <div>
+            Seotitle
+            <input type="text" name="SeoTitle" class="form-control" />
+        </div>
+        <br />
+        <div>
+            CreatedBy
+            <select class="form-control" name="CreatedBy">
+                <option value="">Please Select ...</option>
+                @foreach (var user in ViewBag.listUser)
+                {
+                    <option value="@user.UserName">
+                        @user.UserName
+                    </option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Thêm</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Category/XemDanhMuc" style="margin-left: 50px;">Trở lại trang danh mục</a></h4>
+

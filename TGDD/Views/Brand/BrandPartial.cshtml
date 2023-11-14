@@ -1,0 +1,10 @@
+﻿@using MyClass.Models
+@model List<Brand>
+@foreach (var item in Model)
+{
+    <li style="display:inline-block;width:130px; border: 1px solid; border-radius: 20px; text-align:center; margin:10px">
+        <a href="~/Product/ShowTheoBrandID?BrandID=@item.BrandID&CatID=@item.CatID">
+            <img src="~/Content/img/logo/@item.BrandImage" style="width: 100px;" />
+        </a>
+    </li>
+}

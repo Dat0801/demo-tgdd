@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "ThemUser";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@model MyClass.Models.Users
+<center><h2>Thêm Người Dùng</h2></center>
+<form action="/Admin/Users/ThemUser" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        <div>
+            Tài khoản
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Mật khẩu
+            <input type="password" name="Password" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Name
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Phone
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Email
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+        <br />
+        <div>
+            Address
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Role
+            <select class="form-control" name="Role">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+        <br />
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Thêm</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h4>
+

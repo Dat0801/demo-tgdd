@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "ThemUser";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@model MyClass.Models.Users
+<center><h2>Sửa Người Dùng</h2></center>
+<form action="/Admin/Users/SuaUser?username=@ViewBag.username" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Sửa thành công</h5>
+        }
+        <div>
+            Mật khẩu
+            <input type="password" name="Password" value="@Model.Password" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Name
+            <input type="text" name="Name" class="form-control" value="@Model.Name" /><br />
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Phone
+            <input type="text" name="Phone" class="form-control" value="@Model.Phone" /><br />
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Email
+            <input type="text" name="Email" class="form-control" value="@Model.Email" /><br />
+        </div>
+        <br />
+        <div>
+            Address
+            <input type="text" name="Address" class="form-control" value="@Model.Address" /><br />
+        </div>
+        <br />
+        <div style="width:25%;">
+            Role
+            <select class="form-control" name="Role">
+                @if (@Model.Role == "User")
+                {
+                    <option value="User" selected>User</option>
+                    <option value="Admin">Admin</option>
+                }
+                else
+                {
+                    <option value="User">User</option>
+                    <option value="Admin" selected>Admin</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                @if (@Model.Active)
+                {
+                    <option value="true" selected>True</option>
+                    <option value="false">False</option>
+                }
+                else
+                {
+                    <option value="true">True</option>
+                    <option value="false" selected>False</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Sửa</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h4>

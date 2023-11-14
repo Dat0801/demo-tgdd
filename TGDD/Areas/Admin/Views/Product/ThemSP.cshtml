@@ -1,0 +1,110 @@
+﻿@model MyClass.Models.Product
+@{
+    ViewBag.Title = "ThemSP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<center><h2>Thêm Sản Phẩm</h2></center>
+<form action="/Admin/Product/ThemSP" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        <div>
+            Tên sản phẩm
+            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            Mô tả sản phẩm
+            @Html.TextBoxFor(model => model.ProductDes, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductDes, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            MetaKeywords
+            <input type="text" name="MetaKeywords" class="form-control" />
+        </div>
+        <br />
+        <div>
+            Hình ảnh sản phẩm
+            <input type="file" name="ProductImage" class="form-control" />
+        </div>
+        <br />
+        <div>
+            Danh mục
+            <select class="form-control" name="CatID" id="category">
+                <option value="">Please Select ...</option>
+                @foreach (var cat in ViewBag.listCategory)
+                {
+                    <option value="@cat.CatID">
+                        @cat.CatName
+                    </option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
+        </div>
+        <br /><div>
+            Brand
+            <select class="form-control" name="BrandID" id="brandList">
+                <option value="">Please Select ...</option>
+                @foreach (var brand in ViewBag.listBrand)
+                {
+                    <option value="@brand.BrandID">
+                        @brand.BrandName
+                    </option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Giá
+            <input type="number" name="Price" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div><br />
+        <div style="width:25%;">
+            Giá ưu đãi
+            @Html.TextBoxFor(model => model.PromotionPrice, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
+        </div><br />
+        <div style="width:25%;">
+            Số lượng
+            <input type="number" name="Quantity" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div><br />
+        <div style="width:25%;">
+            Bảo hành
+            <input type="number" name="Warranty" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
+        </div><br />
+        <div>
+            CreatedBy
+            <select class="form-control" name="CreatedBy">
+                <option value="">Please Select ...</option>
+                @foreach (var user in ViewBag.listUser)
+                {
+                    <option value="@user.UserName">
+                        @user.UserName
+                    </option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Thêm</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Product/XemSP" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h4>

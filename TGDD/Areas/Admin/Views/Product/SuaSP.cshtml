@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "SuaSP";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@model MyClass.Models.Product
+<center><h2>Sửa Sản Phẩm</h2></center>
+<form action="/Admin/Product/SuaSP?ProductID=@ViewBag.ProductID" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Sửa thành công</h5>
+        }
+        <div>
+            Tên sản phẩm
+            <input type="text" name="ProductName" class="form-control" value="@Model.ProductName" /><br />
+        </div>
+        <div>
+            Mô tả sản phẩm
+            <input type="text" name="ProductDes" class="form-control" value="@Model.ProductDes" /><br />
+        </div>
+        <div>
+            MetaKeywords
+            <input type="text" name="MetaKeywords" class="form-control" value="@Model.MetaKeywords" /><br />
+        </div>
+        <div>
+            Hình ảnh sản phẩm
+            <br />
+            <img src="~/Content/img/product/@Model.MetaKeywords/@Model.ProductImage" />
+            <br />
+            <input type="text" name="ProductImage" class="form-control" value="@Model.ProductImage" />
+        </div>
+        <br />
+        <div>
+            Danh mục
+            <select class="form-control" name="CatID">
+                @foreach (var cat in ViewBag.listCategory)
+                {
+                    if (Model.CatID == @cat.CatID)
+                    {
+                        <option value="@cat.CatID" selected>
+                            @cat.CatName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@cat.CatID">
+                            @cat.CatName
+                        </option>
+                    }
+
+                }
+
+            </select>
+        </div>
+        <div>
+            Brand
+            <select class="form-control" name="BrandID">
+                @foreach (var brand in ViewBag.listBrand)
+                {
+                    if (Model.BrandID == @brand.BrandID)
+                    {
+                        <option value="@brand.BrandID" selected>
+                            @brand.BrandName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@brand.BrandID">
+                            @brand.BrandName
+                        </option>
+                    }
+
+                }
+
+            </select>
+        </div>
+        <div style="width:25%;">
+            Giá
+            <input type="number" name="Price" class="form-control" value="@Model.Price" />
+        </div><br />
+        <div style="width:25%;">
+            Giá ưu đãi
+            <input type="number" name="PromotionPrice" class="form-control" value="@Model.PromotionPrice" />
+        </div><br />
+        <div style="width:25%;">
+            Số lượng
+            <input type="number" name="Quantity" class="form-control" value="@Model.Quantity" />
+        </div><br />
+        <div style="width:25%;">
+            Bảo hành
+            <input type="number" name="Warranty" class="form-control" value="@Model.Warranty" />
+        </div><br />
+        <div>
+            CreatedBy
+            <select class="form-control" name="CreatedBy">
+                @foreach (var user in ViewBag.listUser)
+                {
+                    if (Model.CreatedBy == @user.UserName)
+                    {
+                        <option value="@user.UserName" selected>
+                            @user.UserName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@user.UserName">
+                            @user.UserName
+                        </option>
+                    }
+
+                }
+
+            </select>
+        </div>
+        <div style="width:25%;">
+            Active
+            <select class="form-control" name="Active">
+                @if (@Model.Active)
+                {
+                    <option value="true" selected>True</option>
+                    <option value="false">False</option>
+                }
+                else
+                {
+                    <option value="true">True</option>
+                    <option value="false" selected>False</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <center><button type="submit" class="btn btn-success">Sửa</button></center>
+        </div>
+    </div>
+</form>
+<h5><a href="/Admin/Product/XemSP" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h5>

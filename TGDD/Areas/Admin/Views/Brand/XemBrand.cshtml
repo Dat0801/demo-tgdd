@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "XemDanhMuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h4><a href="/Admin/Brand/ThemBrand">Create New</a></h4>
+@model List<MyClass.Models.Brand>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">BrandName</th>
+            <th scope="col">BrandImage</th>
+            <th scope="col">CatName</th>
+            <th scope="col">Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BrandName</td>
+                <td><img src="~/Content/img/logo/@item.BrandImage"/></td>
+                @foreach (var cat in ViewBag.listCategory)
+                {
+                    if (cat.CatID == item.CatID)
+                    {
+                        <td>@cat.CatName</td>
+                    }
+                }
+                <td>@item.Active</td>
+                <td>
+                    <a href="/Admin/Brand/SuaBrand?BrandID=@item.BrandID" style="color:greenyellow">Edit</a>
+                    <a href="/Admin/Brand/XoaBrand?BrandID=@item.BrandID" style="color:greenyellow">Delete</a>
+                </td>
+            </tr>
+        }
+</table>
+

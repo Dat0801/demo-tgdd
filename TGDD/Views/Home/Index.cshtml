@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" style="padding-top:50px;">
+    <center>
+        <div class="container">
+            <img src="~/Content/img/caroseol/sale-phone.png" class="w-100"/>
+        </div>
+        <ul class="listproduct" style="list-style-type:none;">
+            @foreach (var item in @ViewBag.lstPhone)
+            {
+                <li class="item" style="width:250px; margin:10px; display:inline-block">
+                    <a href="~/Product/Detail?ProductID=@item.ProductID" style="text-decoration:none;">
+                        <div class="card" style="width:250px;">
+                            <div class="img-main">
+                                <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title">@item.ProductName</h6>
+                                <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
+                                <strong class="price" style="color:red;">@item.PromotionPrice</strong>
+                                <div class="item-rating">
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </center>
+    <br />
+    <div class="text-center">
+        <a href="~/Product/ShowTheoCatID?catid=1" style="text-decoration: none; color: black; border: 1px solid; border-radius: 5px; padding: 15px;">Xem thêm sản phẩm về điện thoại</a>
+    </div>
+    <br />
+</div>
+
+<div class="container-fluid">
+    <center>
+        <div class="container">
+            <img src="~/Content/img/caroseol/sale-laptop.png" class="w-100" />
+        </div>
+        <ul class="listproduct" style="list-style-type:none">
+            @foreach (var item in @ViewBag.lstLaptop)
+            {
+                <li class="item" style="width:250px; margin:10px; display:inline-block">
+                    <a href="~/Product/Detail?ProductID=@item.ProductID" style="text-decoration:none;">
+                        <div class="card" style="width:250px;">
+                            <div class="img-main">
+                                <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title-h3">@item.ProductName</h6>
+                                <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
+                                <strong class="price" style="color:red;">@item.PromotionPrice</strong>
+                                <div class="item-rating">
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </center>
+    <br />
+    <div class="text-center">
+        <a href="~/Product/ShowTheoCatID?catid=2" style="text-decoration: none; color: black; border: 1px solid; border-radius: 5px; padding: 15px;">Xem thêm sản phẩm về laptop</a>
+    </div>
+    <br />
+</div>
+
+<div class="container-fluid">
+    <center>
+        <div class="container">
+            <img src="~/Content/img/caroseol/sale-tablet.png" class="w-100" />
+        </div>
+        <ul class="listproduct" style="list-style-type:none;">
+            @foreach (var item in @ViewBag.lstTablet)
+            {
+                <li class="item" style="width:250px; margin:10px; display:inline-block">
+                    <a href="~/Product/Detail?ProductID=@item.ProductID" style="text-decoration:none;">
+                        <div class="card" style="width:250px;">
+                            <div class="img-main">
+                                <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title-h3">@item.ProductName</h6>
+                                <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
+                                <strong class="price" style="color:red;">@item.PromotionPrice</strong>
+                                <div class="item-rating">
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
+                                    <i class="fa fa-star " aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </center>
+    <div class="text-center">
+        <a href="~/Product/ShowTheoCatID?catid=3" style="text-decoration: none; color: black; border: 1px solid; border-radius: 5px; padding: 15px;">Xem thêm sản phẩm về máy tính bảng</a>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,19 @@
+﻿@using MyClass.Models
+@model List<Category>
+@foreach (var item in Model)
+{
+    @*<li class="nav-item" style="padding:0px 50px 0px;">
+        <a href="~/Product/ShowTheoCatID?CatID=@item.CatID" class="nav-link active">
+            <span style="color:black">
+                @item.CatName
+            </span>
+        </a>
+    </li>*@
+    <li class="nav-item">
+        <a href="~/Product/ShowTheoCatID?CatID=@item.CatID" style="text-decoration: none; color: black;">
+            <img src="~/Content/img/logo/@item.CategoryImage" width="20" />
+            @item.CatName
+        </a>
+    </li>
+}
+
