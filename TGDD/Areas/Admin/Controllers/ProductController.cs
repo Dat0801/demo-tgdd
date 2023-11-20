@@ -5,19 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace TGDD.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
         // GET: Admin/Product
         List<Product> listProduct = new List<Product>();
-        public ActionResult XemSP()
+        public ActionResult XemSP(int? page)
         {
-            listProduct = ProductDAO.Instance.getData();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var listProducts = ProductDAO.Instance.getData().ToPagedList(pageNumber, pageSize);
             ViewBag.listBrand = BrandDAO.Instance.getData();
             ViewBag.listCategory = CategoryDAO.Instance.getData();
-            return View(listProduct);
+            return View(listProducts);
         }
 
         public ActionResult ThemSP()
