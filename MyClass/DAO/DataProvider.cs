@@ -12,7 +12,7 @@ namespace MyClass.DAO
     {
         private static DataProvider instance;
 
-        private string conStr = "Data Source=DESKTOP-S0K3I3A;Initial Catalog=DB_TGDD;Integrated Security=True";
+        private readonly string conStr = "Data Source=LAPTOP-70K25FBU;Initial Catalog=DB_TGDD;Integrated Security=True";
 
         public static DataProvider Instance
         {

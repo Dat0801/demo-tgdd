@@ -1,10 +1,9 @@
 ﻿using MyClass.DAO;
 using MyClass.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System;
 
 namespace TGDD.Areas.Admin.Controllers
 {
@@ -12,9 +11,12 @@ namespace TGDD.Areas.Admin.Controllers
     {
         // GET: Admin/Product
         List<Product> listProduct = new List<Product>();
-        public ActionResult XemSP()
+        //Vào menu Tools chọn NuGet Package Manager Cai goi Install-Package PagedList.Mvc
+        public ActionResult XemSP(int? page)
         {
-            listProduct = ProductDAO.Instance.getData();
+            int pagesize = 10;
+            int pageNumber = (page ?? 1);
+            var listProduct = ProductDAO.Instance.getData().ToPagedList(pageNumber, pagesize);
             ViewBag.listBrand = BrandDAO.Instance.getData();
             ViewBag.listCategory = CategoryDAO.Instance.getData();
             return View(listProduct);
