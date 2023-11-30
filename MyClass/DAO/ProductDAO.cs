@@ -60,7 +60,7 @@ namespace MyClass.DAO
             try
             {
                 List<Product> listProduct = new List<Product>();
-                string query = "Select * from Product where BrandID = " + BrandID;
+                string query = "Select * from Product where Active = 1 AND BrandID = " + BrandID;
                 DataTable dt = DataProvider.Instance.ExecuteQuery(query);
                 foreach (DataRow row in dt.Rows)
                 {
@@ -80,7 +80,7 @@ namespace MyClass.DAO
             try
             {
                 List<Product> listProduct = new List<Product>();
-                string query = "Select * from Product where CatID = " + CatID;
+                string query = "Select * from Product where Active = 1 AND CatID = " + CatID;
                 DataTable dt = DataProvider.Instance.ExecuteQuery(query);
                 foreach (DataRow row in dt.Rows)
                 {

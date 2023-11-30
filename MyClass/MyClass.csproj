@@ -43,13 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DAO\UsersDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\BrandDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
-    <Compile Include="Models\Footer.cs" />
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Brand.cs" />

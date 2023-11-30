@@ -115,5 +115,55 @@ namespace TGDD.Controllers
             }
             return RedirectToAction("GioHang", "GioHang");
         }
+
+        public List<Orders> LayHoaDon()
+        {
+            List<Orders> listOrders = new List<Orders>();
+            Orders orderadd = new Orders();
+            orderadd.UserName = "user3";
+            OrdersDAO.Instance.AddOrders(orderadd);
+
+            listOrders = OrdersDAO.Instance.getData();
+            return listOrders;
+        }
+        public void LuuHoaDon(Orders order)
+        {
+            OrdersDAO.Instance.AddOrders(order);
+        }
+        public ActionResult LuuHoaDonDetail()
+        {
+            List<GioHang> listGioHang = LayGioHang();
+            List<OrderDetail> listOrderDetail = new List<OrderDetail>();
+            List<Orders> listOrders = new List<Orders>();
+
+
+            Orders orderadd = new Orders();
+            orderadd.UserName = "user3";
+            LuuHoaDon(orderadd);
+
+            listOrders = LayHoaDon();
+            Orders order = new Orders();
+            order = listOrders.Last();
+
+            foreach(var a in listGioHang )
+            {
+                OrderDetail detail = new OrderDetail();
+                detail.OrderID = order.OrderID;
+                detail.ProductID = a.iMaSP;
+                detail.Price = (decimal)a.dDonGia;
+                detail.Quantity = 1;
+
+                listOrderDetail.Add(detail);
+            }
+            foreach(var item in listOrderDetail)
+            {
+                OrdersDAO.Instance.AddOrderDetail(item);
+            }
+
+
+            return RedirectToAction("XoaGioHangAll", "GioHang");
+
+
+        }
 	}
 }

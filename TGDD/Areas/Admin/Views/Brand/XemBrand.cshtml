@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "XemDanhMuc";
+    ViewBag.Title = "Xem Brand";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
 
@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>@item.BrandName</td>
-                <td><img src="~/Content/img/logo/@item.BrandImage"/></td>
+                <td><img src="~/Content/img/logo/@item.BrandImage" /></td>
                 @foreach (var cat in ViewBag.listCategory)
                 {
                     if (cat.CatID == item.CatID)
@@ -31,9 +31,8 @@
                 }
                 <td>@item.Active</td>
                 <td>
-                    <a href="/Admin/Brand/SuaBrand?BrandID=@item.BrandID" style="color:red">Edit</a>
-                    |
-                    <a href="/Admin/Brand/XoaBrand?BrandID=@item.BrandID" style="color:crimson">Delete</a>
+                    <a href="/Admin/Brand/SuaBrand?BrandID=@item.BrandID" style="color:greenyellow">Edit</a>
+                    <a class="btn-delete" style="color:greenyellow" data-bs-toggle="modal" data-bs-target="#exampleModal" data-brandid=@item.BrandID data-brandname=@item.BrandName>Delete</a>
                 </td>
             </tr>
         }
@@ -80,4 +79,40 @@
         </ul>
     </nav>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:black">Xóa brand</h5>
+            </div>
+            <div class="modal-body">
+                <p style="color: red">Bạn có chắc muốn xóa brand?</p>
+                <table class="table table-product">
+                    <tr>
+                        <td>BrandID</td>
+                        <td><span id="DeleteBrandIDSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>BrandName</td>
+                        <td><span id="DeleteBrandNameSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <a href="/Admin/Brand/XoaBrand?BrandID" id="btn-xoa" class="btn btn-success">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.btn-delete').click((event) => {
+        const brandid = $(event.target).attr('data-brandid');
+        const brandname = $(event.target).attr('data-brandname');
+        $('#DeleteBrandIDSpan').html(brandid);
+        $('#DeleteBrandNameSpan').html(brandname);
+        $("#btn-xoa").attr("href", "/Admin/Brand/XoaBrand?BrandID=" + brandid);
+    })
+</script>
 

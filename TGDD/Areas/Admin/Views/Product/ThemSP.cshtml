@@ -1,6 +1,6 @@
 ﻿@model MyClass.Models.Product
 @{
-    ViewBag.Title = "ThemSP";
+    ViewBag.Title = "Thêm Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
 
@@ -10,6 +10,10 @@
         @if (ViewBag.result == 1)
         {
             <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Thêm thất bại</h5>
         }
         <div>
             Tên sản phẩm

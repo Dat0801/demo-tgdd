@@ -20,7 +20,7 @@ namespace MyClass.Models
         public string iMetaType { get; set; }
         public double dThanhTien
         {
-            get { return iSoLuong * dDonGia; }
+            get { return iSoLuong * (int)dDonGia; }
         }
 
         public GioHang(int Mapro)

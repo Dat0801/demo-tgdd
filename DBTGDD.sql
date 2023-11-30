@@ -97,8 +97,8 @@ CREATE TABLE Users
 CREATE TABLE Orders
 (
 	OrderID int identity(1,1),
-	CreatedDate DATETIME DEFAULT GETDATE(),
-	ShipDate DATETIME DEFAULT GETDATE(),
+	CreatedDate DATE DEFAULT GETDATE(),
+	ShipDate DATE DEFAULT GETDATE(),
 	Status BIT DEFAULT 0,
 	ShipStatus BIT DEFAULT 0,
 	UserName varchar(50) NOT NULL,
@@ -116,7 +116,16 @@ CREATE TABLE OrderDetail
 	Constraint FK_OrderDetail_Orders Foreign key (OrderID) references Orders(OrderID),
 	Constraint FK_OrderDetail_Product Foreign key (ProductID) references Product(ProductID)
 )
-	
+
+insert into Orders(UserName) 
+values
+('user1')
+select * from Orders
+
+insert into OrderDetail
+values
+(1,2,1,2300000)
+
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
 	(N'Điện Thoại','dien-thoai','admin1',N'dien-thoai',N'Điện Thoại',1,N'icon-phone-96x96.png'),
@@ -192,7 +201,8 @@ select*from Footer
 INSERT INTO Users(UserName,Password,Name,Phone,Email,Address,CreatedBy,Role)
 VALUES
 ('admin1','123456',N'Lê Trần Công','09876543154','ltc@gmail.com','TP.HCM',null, 'Admin'),
-('user1','123',N'Nguyễn Văn An','0987623456','nva@gmail.com','TP.HCM','admin1', 'User')
+('user1','123',N'Nguyễn Văn An','0987623456','nva@gmail.com','TP.HCM','admin1', 'User'),
+('user3','123',N'Nguyễn Văn An','0987623456','nva@gmail.com','TP.HCM','admin1', 'User')
 select*from Users
 --delete from Accounts
 
