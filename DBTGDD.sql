@@ -117,14 +117,7 @@ CREATE TABLE OrderDetail
 	Constraint FK_OrderDetail_Product Foreign key (ProductID) references Product(ProductID)
 )
 
-insert into Orders(UserName) 
-values
-('user1')
-select * from Orders
 
-insert into OrderDetail
-values
-(1,2,1,2300000)
 
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
@@ -346,4 +339,3 @@ VALUES
 (N'Cáp Lightning 1m Xmobile DR-L001X',N'Cáp Lightning 1m Xmobile DR-L001X',N' Chip E-marker Smart   1m',6,27,30000000,100001,N'Cáp Lightning 1m Xmobile DR-L001X.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1)
 	select* from Product
 --delete from Product
-
