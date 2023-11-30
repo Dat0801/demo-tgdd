@@ -40,9 +40,24 @@ namespace MyClass.DAO
             }
         }
 
+        public Orders getData(int OrderID)
+        {
+            try
+            {
+                string query = "Select * from Orders where OrderID = '" + OrderID + "'";
+                DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+                var Order = new Orders(dt.Rows[0]);
+                return Order;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public int AddOrders(Orders Orders)
         {
-            string queryOrders = "insert into Orders( UserName) values('" + Orders.UserName + "')";
+            string queryOrders = "insert into Orders values('" + Orders.CreatedDate + "', '" + Orders.ShipDate + "', '" + Orders.Status + "', '" + Orders.ShipStatus + "', '" + Orders.UserName + "')";
             int rsOrders = DataProvider.Instance.ExecuteNonQuery(queryOrders);
             return rsOrders;
         }
@@ -52,6 +67,20 @@ namespace MyClass.DAO
                 "values(" + OrderDetail.OrderID + "," + OrderDetail.ProductID + "," + OrderDetail.Quantity + ", " + OrderDetail.Price + ")";
             int rsOrderDetail = DataProvider.Instance.ExecuteNonQuery(queryOrderDetail);
             return rsOrderDetail;
+        }
+
+        public void DeleteOrders(int OrderID)
+        {
+            string query = "Delete from Orders where OrderID = '" + OrderID + "'";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
+        public int UpdateOrders(int OrderID ,Orders order)
+        {
+            string query = "Update Orders Set CreatedDate = N'" + order.CreatedDate + "', ShipDate = '" + order.ShipDate + "', Status = '" + order.Status + "', ShipStatus = '" + order.ShipStatus + "', UserName = '" + order.UserName + "'" +
+               "where OrderID = '" + OrderID + "' ";
+            int rs = DataProvider.Instance.ExecuteNonQuery(query);
+            return rs;
         }
     }
 }

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Sửa Đơn Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model MyClass.Models.Orders
+<center><h2>Sửa Đơn Hàng</h2></center>
+<form action="/Admin/Orders/SuaOrder?OrderID=@ViewBag.OrderID" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Sửa thành công</h5>
+        }
+        <div>
+            CreatedDate
+            <input type="text" name="CreatedDate" value="@Model.CreatedDate.ToString("MM/dd/yyyy")" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            ShipDate
+            <input type="text" name="ShipDate" value="@Model.ShipDate.ToString("MM/dd/yyyy")" class="form-control" />
+            @Html.ValidationMessageFor(model => model.ShipDate, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Status
+            <select class="form-control" name="Status">
+                @if (@Model.Status)
+                {
+                    <option value="false">Chưa thanh toán</option>
+                    <option value="true" selected>Đã thanh toán</option>
+                }
+                else
+                {
+                    <option value="false" selected>Chưa thanh toán</option>
+                    <option value="true">Đã thanh toán</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div style="width:25%;">
+            ShipStatus
+            <select class="form-control" name="ShipStatus">
+                @if (@Model.Status)
+                {
+                    <option value="false">Đang giao hàng</option>
+                    <option value="true" selected>Đã giao hàng</option>
+                }
+                else
+                {
+                    <option value="false" selected>Đang giao hàng</option>
+                    <option value="true">Đã giao hàng</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div>
+            UserName
+            <select class="form-control" name="UserName">
+                @foreach (var user in ViewBag.listUser)
+                {
+                    if (Model.UserName == @user.UserName)
+                    {
+                        <option value="@user.UserName" selected>
+                            @user.UserName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@user.UserName">
+                            @user.UserName
+                        </option>
+                    }
+
+                }
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </select>
+        </div>
+        <br />
+        <div>
+            <center><button type="submit" class="btn btn-success">Sửa</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Orders/XemOrders" style="margin-left: 50px;">Trở lại trang hóa đơn</a></h4>
+

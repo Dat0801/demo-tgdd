@@ -98,7 +98,7 @@ CREATE TABLE Orders
 (
 	OrderID int identity(1,1),
 	CreatedDate DATE DEFAULT GETDATE(),
-	ShipDate DATE DEFAULT GETDATE(),
+	ShipDate DATE DEFAULT DATEADD(day,7,GETDATE()),
 	Status BIT DEFAULT 0,
 	ShipStatus BIT DEFAULT 0,
 	UserName varchar(50) NOT NULL,
@@ -116,15 +116,6 @@ CREATE TABLE OrderDetail
 	Constraint FK_OrderDetail_Orders Foreign key (OrderID) references Orders(OrderID),
 	Constraint FK_OrderDetail_Product Foreign key (ProductID) references Product(ProductID)
 )
-
-insert into Orders(UserName) 
-values
-('user1')
-select * from Orders
-
-insert into OrderDetail
-values
-(1,2,1,2300000)
 
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
