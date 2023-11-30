@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Xem Hóa Đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h4><a href="/Admin/Orders/ThemOrder">Create New</a></h4>
+@model List<MyClass.Models.Orders>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">OrderID</th>
+            <th scope="col">CreatedDate</th>
+            <th scope="col">ShipDate</th>
+            <th scope="col">Status</th>
+            <th scope="col">ShipStatus</th>
+            <th scope="col">UserName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderID</td>
+                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.ShipDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.Status</td>
+                <td>@item.ShipStatus</td>
+                <td>@item.UserName</td>
+                <td>
+                    <a href="/Admin/Orders/SuaOrder?OrderID=@item.OrderID" style="color:greenyellow">Edit</a>
+                    <a class="btn-delete" style="color:greenyellow" data-bs-toggle="modal" data-bs-target="#exampleModal" data-orderid=@item.OrderID data-username=@item.UserName>Delete</a>
+                </td>
+            </tr>
+        }
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:black">Xóa hóa đơn</h5>
+            </div>
+            <div class="modal-body">
+                <p style="color: red">Bạn có chắc muốn xóa hóa đơn ?</p>
+                <table class="table table-product">
+                    <tr>
+                        <td>OrderID</td>
+                        <td><span id="DeleteOrderIDSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>UserName</td>
+                        <td><span id="DeleteUserNameSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <a href="/Admin/Orders/XoaOrder?OrderID" id="btn-xoa" class="btn btn-success">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.btn-delete').click((event) => {
+        const orderid = $(event.target).attr('data-orderid');
+        const username = $(event.target).attr('data-username');
+        $('#DeleteOrderIDSpan').html(orderid);
+        $('#DeleteUserNameSpan').html(username);
+        $("#btn-xoa").attr("href", "/Admin/Orders/XoaOrder?OrderID=" + orderid);
+    })
+</script>
+
+

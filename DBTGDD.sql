@@ -98,7 +98,7 @@ CREATE TABLE Orders
 (
 	OrderID int identity(1,1),
 	CreatedDate DATE DEFAULT GETDATE(),
-	ShipDate DATE DEFAULT GETDATE(),
+	ShipDate DATE DEFAULT DATEADD(day,7,GETDATE()),
 	Status BIT DEFAULT 0,
 	ShipStatus BIT DEFAULT 0,
 	UserName varchar(50) NOT NULL,
@@ -117,8 +117,11 @@ CREATE TABLE OrderDetail
 	Constraint FK_OrderDetail_Product Foreign key (ProductID) references Product(ProductID)
 )
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3cc75450bc231e50d0d96e95e3d724e2313e6a08
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
 	(N'Điện Thoại','dien-thoai','admin1',N'dien-thoai',N'Điện Thoại',1,N'icon-phone-96x96.png'),
