@@ -151,7 +151,7 @@ namespace TGDD.Controllers
                 detail.OrderID = order.OrderID;
                 detail.ProductID = a.iMaSP;
                 detail.Price = (decimal)a.dDonGia;
-                detail.Quantity = 1;
+                detail.Quantity = a.iSoLuong;
 
                 listOrderDetail.Add(detail);
             }

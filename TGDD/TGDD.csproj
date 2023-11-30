@@ -1910,6 +1910,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
@@ -2131,6 +2132,9 @@
     <Content Include="Areas\Admin\Views\Brand\XemBrand.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\ThemBrand.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\SuaBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\XemOrders.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\ThemOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\SuaOrder.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\bootstrap.min.js.map" />

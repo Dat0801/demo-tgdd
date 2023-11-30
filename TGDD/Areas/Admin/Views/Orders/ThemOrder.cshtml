@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Thêm Đơn Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model MyClass.Models.Orders
+<center><h2>Thêm Đơn Hàng</h2></center>
+<form action="/Admin/Orders/ThemOrder" method="post">
+    <div style="width: 70%; margin-left: 50px">
+        @if (ViewBag.result == 1)
+        {
+            <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        <div>
+            CreatedDate
+            <input type="date" name="CreatedDate" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            ShipDate
+            <input type="date" name="ShipDate" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.ShipDate, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div style="width:25%;">
+            Status
+            <select class="form-control" name="Status">
+                <option value="false">Chưa thanh toán</option>
+                <option value="true">Đã thanh toán</option>
+            </select>
+        </div>
+        <br />
+        <div style="width:25%;">
+            ShipStatus
+            <select class="form-control" name="ShipStatus">
+                <option value="false">Đang giao hàng</option>
+                <option value="true">Đã giao hàng</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            UserName
+            <select class="form-control" name="UserName">
+                <option value="">Please Select ...</option>
+                @foreach (var user in ViewBag.listUser)
+                {
+                    <option value="@user.UserName">
+                        @user.UserName
+                    </option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div>
+            <center><button type="submit" class="btn btn-success">Thêm</button></center>
+        </div>
+    </div>
+</form>
+<h4><a href="/Admin/Orders/XemOrders" style="margin-left: 50px;">Trở lại trang hóa đơn</a></h4>

@@ -59,6 +59,26 @@ namespace MyClass.DAO
             }
         }
 
+        public List<Users> getDataUser()
+        {
+            try
+            {
+                List<Users> listUsers = new List<Users>();
+                string query = "Select * from Users where Role = 'User'";
+                DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+                foreach (DataRow row in dt.Rows)
+                {
+                    var user = new Users(row);
+                    listUsers.Add(user);
+                }
+                return listUsers;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public Users getData(string username)
         {
             try
