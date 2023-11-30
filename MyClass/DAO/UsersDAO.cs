@@ -12,7 +12,6 @@ namespace MyClass.DAO
     public class UsersDAO
     {
         private static UsersDAO instance;
-        private readonly string conStr = "Data Source=LAPTOP-70K25FBU;Initial Catalog=DB_TGDD;Integrated Security=True";
         public static UsersDAO Instance
         {
             get { if (instance == null) instance = new UsersDAO(); return UsersDAO.instance; }
@@ -114,27 +113,17 @@ namespace MyClass.DAO
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(conStr))
-                {
-                    connection.Open();
-
-                    string query = "INSERT INTO Users (UserName, Password, Name, Phone, Email, Address, Role, Active) " +
-                                   "VALUES (@UserName, @Password, @Name, @Phone, @Email, @Address, 'User', 1)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@UserName", username);
-                        cmd.Parameters.AddWithValue("@Password", password);
-                        cmd.Parameters.AddWithValue("@Name", name);
-                        cmd.Parameters.AddWithValue("@Phone", phone);
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Address", address);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        return rowsAffected > 0;
-                    }
-                }
+                string query = "INSERT INTO Users (UserName, Password, Name, Phone, Email, Address, Role, Active) " +
+                               "VALUES (@UserName, @Password, @Name, @Phone, @Email, @Address, 'User', 1)";
+                SqlCommand cmd = new SqlCommand(query);
+                cmd.Parameters.AddWithValue("@UserName", username);
+                cmd.Parameters.AddWithValue("@Password", password);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Address", address);
+                int rowsAffected = DataProvider.Instance.ExecuteNonQuery(query);
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
@@ -149,34 +138,22 @@ namespace MyClass.DAO
             {
                 List<Product> listPrd = new List<Product>();
                 string query = "SELECT * FROM Product WHERE ProductName LIKE @tensp";
-
-                using (SqlConnection connection = new SqlConnection(conStr))
+                SqlCommand cmd = new SqlCommand(query);
+                cmd.Parameters.AddWithValue("@tensp", "%" + searchStr + "%");
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
-                    connection.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
                     {
-                        cmd.Parameters.AddWithValue("@tensp", "%" + searchStr + "%");
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            adapter.Fill(dt);
-
-                            foreach (DataRow row in dt.Rows)
-                            {
-                                var product = new Product(row);
-                                listPrd.Add(product);
-                            }
-                        }
+                        var product = new Product(row);
+                        listPrd.Add(product);
                     }
                 }
-
                 return listPrd;
             }
             catch (Exception ex)
             {
-                // Xử lý ngoại lệ nếu cần thiết
                 throw ex;
             }
         }
