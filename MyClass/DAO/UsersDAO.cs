@@ -152,29 +152,30 @@ namespace MyClass.DAO
                 return false;
             }
         }
+
         public List<Product> TimKiem(string searchStr)
         {
             try
             {
                 List<Product> listPrd = new List<Product>();
                 string query = "SELECT * FROM Product WHERE ProductName LIKE @tensp";
-                SqlCommand cmd = new SqlCommand(query);
-                cmd.Parameters.AddWithValue("@tensp", "%" + searchStr + "%");
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                object[] parameters = { "%" + searchStr + "%" };
+
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
                     foreach (DataRow row in dt.Rows)
                     {
                         var product = new Product(row);
                         listPrd.Add(product);
                     }
                 }
+
                 return listPrd;
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
             }
         }
     }
