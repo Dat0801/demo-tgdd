@@ -21,7 +21,14 @@
                         <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
                     </div>
                     <div class="card-body">
-                        <h6 class="card-title">@item.ProductName</h6>
+                        @if (ViewBag.CatID == 1 || ViewBag.CatID == 3 || ViewBag.CatID == 4)
+                        {
+                            <h6 class="card-title" style="overflow: hidden; display:block; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1">@item.ProductName</h6>
+                        }
+                        else
+                        {
+                            <h6 class="card-title" style="overflow: hidden; display:block; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2">@item.ProductName</h6>
+                        }
                         <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
                         <strong class="price" style="color:red;">@item.PromotionPrice</strong>
                         <div class="item-rating">

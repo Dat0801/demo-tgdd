@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "XemDanhMuc";
+    ViewBag.Title = "Xem Danh Mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
 <h4><a href="/Admin/Category/ThemDanhMuc">Create New</a></h4>
@@ -19,19 +19,53 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@item.CatName</td>
-            <td><img src="~/Content/img/logo/@item.CategoryImage" width="20" /></td>
-            <td>@item.SeoTitle</td>
-            <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-            <td>@item.CreatedBy</td>
-            <td>@item.Active</td>
-            <td>
-                <a href="/Admin/Category/SuaDanhMuc?CatID=@item.CatID" style="color:greenyellow">Edit</a>
-                <a href="/Admin/Category/XoaDanhMuc?CatID=@item.CatID" style="color:greenyellow">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@item.CatName</td>
+                <td><img src="~/Content/img/logo/@item.CategoryImage" width="20" /></td>
+                <td>@item.SeoTitle</td>
+                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.CreatedBy</td>
+                <td>@item.Active</td>
+                <td>
+                    <a href="/Admin/Category/SuaDanhMuc?CatID=@item.CatID" style="color:greenyellow">Edit</a>
+                    <a class="btn-delete" style="color:greenyellow" data-bs-toggle="modal" data-bs-target="#exampleModal" data-categoryid=@item.CatID data-categoryname=@item.SeoTitle>Delete</a>
+                </td>
+            </tr>
         }
 </table>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:black">Xóa danh mục</h5>
+            </div>
+            <div class="modal-body">
+                <p style="color: red">Bạn có chắc muốn xóa danh mục ?</p>
+                <table class="table table-product">
+                    <tr>
+                        <td>CatID</td>
+                        <td><span id="DeleteCatIDSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Seotitle</td>
+                        <td><span id="DeleteCatNameSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <a href="/Admin/Category/XoaDanhMuc?CatID" id="btn-xoa" class="btn btn-success">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.btn-delete').click((event) => {
+        const catid = $(event.target).attr('data-categoryid');
+        const catname = $(event.target).attr('data-categoryname');
+        $('#DeleteCatIDSpan').html(catid);
+        $('#DeleteCatNameSpan').html(catname);
+        $("#btn-xoa").attr("href", "/Admin/Category/XoaDanhMuc?CatID=" + catid);
+    })
+</script>
 

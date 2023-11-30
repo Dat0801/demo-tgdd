@@ -31,6 +31,7 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemSP(Product product)
         {
+            ViewBag.result = 0;
             ViewBag.listCategory = CategoryDAO.Instance.getData();
             ViewBag.listUser = UsersDAO.Instance.getDataAdmin();
             ViewBag.listBrand = BrandDAO.Instance.getData();
@@ -55,11 +56,16 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SuaSP(int ProductID, Product product)
         {
-            ViewBag.result = ProductDAO.Instance.UpdateProduct(ProductID, product);
+            ViewBag.result = 0;
             ViewBag.listUser = UsersDAO.Instance.getDataAdmin();
             ViewBag.listCategory = CategoryDAO.Instance.getData();
             ViewBag.listBrand = BrandDAO.Instance.getData();
             ViewBag.ProductID = ProductID;
+            if (ModelState.IsValid)
+            {
+                ViewBag.result = ProductDAO.Instance.UpdateProduct(ProductID, product);
+                return View(product);
+            }
             return View(product);
         }
 
