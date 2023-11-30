@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "SuaSP";
+    ViewBag.Title = "Sửa Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
 @model MyClass.Models.Product
@@ -11,18 +11,27 @@
         {
             <h5 style="color:greenyellow">Sửa thành công</h5>
         }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Sửa thất bại</h5>
+        }
         <div>
             Tên sản phẩm
-            <input type="text" name="ProductName" class="form-control" value="@Model.ProductName" /><br />
+            <input type="text" name="ProductName" class="form-control" value="@Model.ProductName" />
+            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
         </div>
+        <br />
         <div>
             Mô tả sản phẩm
-            <input type="text" name="ProductDes" class="form-control" value="@Model.ProductDes" /><br />
+            <input type="text" name="ProductDes" class="form-control" value="@Model.ProductDes" />
+            @Html.ValidationMessageFor(model => model.ProductDes, "", new { @class = "text-danger" })
         </div>
+        <br />
         <div>
             MetaKeywords
-            <input type="text" name="MetaKeywords" class="form-control" value="@Model.MetaKeywords" /><br />
+            <input type="text" name="MetaKeywords" class="form-control" value="@Model.MetaKeywords" />
         </div>
+        <br />
         <div>
             Hình ảnh sản phẩm
             <br />
@@ -50,9 +59,10 @@
                     }
 
                 }
-
+                @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
             </select>
         </div>
+        <br />
         <div>
             Brand
             <select class="form-control" name="BrandID">
@@ -73,23 +83,29 @@
 
                 }
 
+                @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
             </select>
         </div>
+        <br />
         <div style="width:25%;">
             Giá
             <input type="number" name="Price" class="form-control" value="@Model.Price" />
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
         </div><br />
         <div style="width:25%;">
             Giá ưu đãi
             <input type="number" name="PromotionPrice" class="form-control" value="@Model.PromotionPrice" />
+            @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
         </div><br />
         <div style="width:25%;">
             Số lượng
             <input type="number" name="Quantity" class="form-control" value="@Model.Quantity" />
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
         </div><br />
         <div style="width:25%;">
             Bảo hành
             <input type="number" name="Warranty" class="form-control" value="@Model.Warranty" />
+            @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
         </div><br />
         <div>
             CreatedBy
@@ -110,9 +126,10 @@
                     }
 
                 }
-
+                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
             </select>
         </div>
+        <br />
         <div style="width:25%;">
             Active
             <select class="form-control" name="Active">

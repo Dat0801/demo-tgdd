@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "XemUser";
+    ViewBag.Title = "Xem Tài Khoản";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
 
@@ -33,11 +33,39 @@
                 <td>@item.Active</td>
                 <td>
                     <a href="/Admin/Users/SuaUser?username=@item.UserName" style="color:greenyellow">Edit</a>
-                    <a href="/Admin/Users/XoaUser?username=@item.UserName" style="color:greenyellow">Delete</a>
+                    <a class="btn-delete" style="color:greenyellow" data-bs-toggle="modal" data-bs-target="#exampleModal" data-username=@item.UserName>Delete</a>
                 </td>
             </tr>
         }
 </table>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:black">Xóa tài khoản</h5>
+            </div>
+            <div class="modal-body">
+                <p style="color: red">Bạn có chắc muốn xóa user ?</p>
+                <table class="table table-product">
+                    <tr>
+                        <td>UserName</td>
+                        <td><span id="DeleteUserNameSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <a href="/Admin/Users/XoaUser?username" id="btn-xoa" class="btn btn-success">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.btn-delete').click((event) => {
+        const username = $(event.target).attr('data-username');
+        $('#DeleteUserNameSpan').html(username);
+        $("#btn-xoa").attr("href", "/Admin/Users/XoaUser?username=" + username);
+    })
+</script>
 
 
