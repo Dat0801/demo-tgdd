@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace TGDD.Areas.Admin.Controllers
 {
     public class OrdersController : Controller
     {
         // GET: Admin/Orders
         List<Orders> listOrder = new List<Orders>();
-        public ActionResult XemOrders()
+        public ActionResult XemOrders(int? page)
         {
-            listOrder = OrdersDAO.Instance.getData();
-            return View(listOrder);
+            int pagesize = 20;
+            int pageNumber = (page ?? 1);
+            var listOD = OrdersDAO.Instance.getData().ToPagedList(pageNumber, pagesize);
+             //ViewBag.listOrder = OrdersDAO.Instance.getData();
+            return View(listOD);
         }
 
         public ActionResult ThemOrder()

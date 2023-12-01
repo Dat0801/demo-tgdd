@@ -5,17 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace TGDD.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
         List<Category> listCategory = new List<Category>();
         // GET: Admin/Category
-        public ActionResult XemDanhMuc()
+        public ActionResult XemDanhMuc(int? page)
         {
-            listCategory = CategoryDAO.Instance.getData();
-            return View(listCategory);
+            int pagesize = 20;
+            int pageNumber = (page ?? 1);
+            var listDM = CategoryDAO.Instance.getData().ToPagedList(pageNumber, pagesize);
+            //listCategory = CategoryDAO.Instance.getData();
+            return View(listDM);
         }
 
         public ActionResult ThemDanhMuc()

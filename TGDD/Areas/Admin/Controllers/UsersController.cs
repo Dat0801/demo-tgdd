@@ -1,20 +1,25 @@
 ﻿using MyClass.DAO;
 using MyClass.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.UI;
+using PagedList;
 namespace TGDD.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
         List<Users> listUser = new List<Users>();
-        public ActionResult XemUser()
+        public ActionResult XemUser(int? page)
         {
-            listUser = UsersDAO.Instance.getData();
-            return View(listUser);
+            int pagesize = 20;
+            int pageNumber = (page ?? 1);
+            var listUs = UsersDAO.Instance.getData().ToPagedList(pageNumber, pagesize);
+            ViewBag.listUser = UsersDAO.Instance.getData();
+            return View(listUs);
         }
 
         public ActionResult ThemUser()
