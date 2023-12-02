@@ -1,9 +1,12 @@
-﻿@model MyClass.Models.Product
+﻿@using MyClass.Models
+@model Product
 @{
     ViewBag.Title = "Thêm Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
-
+@{
+    var user = Session["user"] as Users;
+}
 <center><h2>Thêm Sản Phẩm</h2></center>
 <form action="/Admin/Product/ThemSP" method="post">
     <div style="width: 70%; margin-left: 50px">
@@ -30,6 +33,7 @@
         <div>
             MetaKeywords
             <input type="text" name="MetaKeywords" class="form-control" />
+            @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>
@@ -40,7 +44,6 @@
         <div>
             Danh mục
             <select class="form-control" name="CatID" id="category">
-                <option value="">Please Select ...</option>
                 @foreach (var cat in ViewBag.listCategory)
                 {
                     <option value="@cat.CatID">
@@ -53,7 +56,6 @@
         <br /><div>
             Brand
             <select class="form-control" name="BrandID" id="brandList">
-                <option value="">Please Select ...</option>
                 @foreach (var brand in ViewBag.listBrand)
                 {
                     <option value="@brand.BrandID">
@@ -87,15 +89,22 @@
         <div>
             CreatedBy
             <select class="form-control" name="CreatedBy">
-                <option value="">Please Select ...</option>
-                @foreach (var user in ViewBag.listUser)
+                @if (user != null)
                 {
                     <option value="@user.UserName">
                         @user.UserName
                     </option>
                 }
+                else
+                {
+                    foreach (var usr in ViewBag.listUser)
+                    {
+                        <option value="@usr.UserName">
+                            @usr.UserName
+                        </option>
+                    }
+                }
             </select>
-            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
         </div>
         <br />
         <div style="width:25%;">

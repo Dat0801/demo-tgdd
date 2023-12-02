@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace MyClass.Models
     public class Brand
     {
         public int BrandID { get; set; }
+        [Required(ErrorMessage = "Bắt buộc nhập tên brand")]
         public string BrandName { get; set; }
         public string BrandImage { get; set; }
         public int CatID { get; set; }

@@ -12,6 +12,10 @@
         {
             <h5 style="color:greenyellow">Thêm thành công</h5>
         }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Thêm thất bại</h5>
+        }
         <div>
             CreatedDate
             <input type="date" name="CreatedDate" value="" class="form-control" />
@@ -43,7 +47,6 @@
         <div>
             UserName
             <select class="form-control" name="UserName">
-                <option value="">Please Select ...</option>
                 @foreach (var user in ViewBag.listUser)
                 {
                     <option value="@user.UserName">
@@ -51,7 +54,6 @@
                     </option>
                 }
             </select>
-            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>
