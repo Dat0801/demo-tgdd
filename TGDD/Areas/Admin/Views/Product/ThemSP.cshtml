@@ -43,7 +43,8 @@
         <br />
         <div>
             Danh mục
-            <select class="form-control" name="CatID" id="category">
+            <select class="form-control" name="CatID" id="categoryDropdown">
+                <option  value="" >Chọn danh mục</option>
                 @foreach (var cat in ViewBag.listCategory)
                 {
                     <option value="@cat.CatID">
@@ -55,16 +56,33 @@
         </div>
         <br /><div>
             Brand
-            <select class="form-control" name="BrandID" id="brandList">
-                @foreach (var brand in ViewBag.listBrand)
-                {
-                    <option value="@brand.BrandID">
-                        @brand.BrandName
-                    </option>
-                }
+            <select class="form-control" name="BrandID" id="brandDropdown">
             </select>
-            @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
         </div>
+        <script>
+            $(document).ready(function () {
+                $("#categoryDropdown").change(function () {
+                    var catId = $(this).val(); // Lấy giá trị của danh mục được chọn
+                    getBrands(catId);
+                });
+            });
+
+            function getBrands(catId) {
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/brand?catid=${catId}`,
+                    success: (responses) => {
+                        $('#brandDropdown').empty();
+                        for (var i = 0; i <= responses.length; i++) {
+                            const brandRow = responses[i];
+                            const strHTML = '<option value="' + brandRow.BrandID + '">' + brandRow.BrandName + '</option>'
+                            $('#brandDropdown').append(strHTML);
+                        }
+                    },
+                    error: (err) => { console.log(error); }
+                });
+            }
+        </script>
         <br />
         <div style="width:25%;">
             Giá

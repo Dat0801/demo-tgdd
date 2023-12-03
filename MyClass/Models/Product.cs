@@ -16,6 +16,7 @@ namespace MyClass.Models
         public string MetaTitle { get; set; }
         [Required(ErrorMessage = "Bắt buộc nhập mô tả sản phẩm")]
         public string ProductDes { get; set; }
+        [Required(ErrorMessage = "Bắt buộc chọn danh mục")]
         public int CatID { get; set; }
         public int BrandID { get; set; }
         [Required(ErrorMessage = "Bắt buộc nhập giá")]
