@@ -68,7 +68,7 @@ namespace TGDD.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Đăng ký không thành công. Tên đăng nhập đã tồn tại.";
+                ViewBag.ErrorMessage = "Đăng ký không thành công.";
                 return View(user);
             }
         }

@@ -122,7 +122,6 @@ namespace TGDD.Controllers
             Orders orderadd = new Orders();
             orderadd.UserName = "user3";
             OrdersDAO.Instance.AddOrders(orderadd);
-
             listOrders = OrdersDAO.Instance.getData();
             return listOrders;
         }

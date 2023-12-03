@@ -11,6 +11,10 @@
         {
             <h5 style="color:greenyellow">Thêm thành công</h5>
         }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Thêm thất bại</h5>
+        }
         <div>
             Tài khoản
             @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
@@ -66,5 +70,5 @@
         </div>
     </div>
 </form>
-<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h4>
+<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang người dùng</a></h4>
 

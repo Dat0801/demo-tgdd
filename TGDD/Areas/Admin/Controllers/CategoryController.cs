@@ -27,6 +27,7 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemDanhMuc(Category category)
         {
+            ViewBag.result = 0;
             ViewBag.listUser = UsersDAO.Instance.getDataAdmin();
             if (ModelState.IsValid)
             {

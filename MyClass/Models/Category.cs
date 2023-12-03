@@ -16,7 +16,6 @@ namespace MyClass.Models
         [Required(ErrorMessage = "Bắt buộc nhập SeoTitle")]
         public string SeoTitle { get; set; }
         public DateTime CreatedDate { get; set; }
-        [Required(ErrorMessage = "Bắt buộc chọn người tạo")]
         public string CreatedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }

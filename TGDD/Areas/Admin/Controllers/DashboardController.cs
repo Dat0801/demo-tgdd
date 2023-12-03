@@ -12,21 +12,39 @@ namespace TGDD.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            
-            return View();
+            if (Session["user"] != null)
+            {
+                var user = Session["user"] as Users;
+                if (UsersDAO.Instance.CheckAdmin(user.UserName))
+                    return View();
+                return RedirectToAction("DangNhap");
+            }
+            return RedirectToAction("DangNhap");
         }
-        
-        public ActionResult BaoCaoNgay()
+        public ActionResult DangNhap()
         {
             return View();
         }
-        public ActionResult BaoCaoThang()
+        [HttpPost]
+        public ActionResult DangNhap(string username, string password)
         {
-            return View();
+            if (UsersDAO.Instance.Login(username, password))
+            {
+                Session["user"] = new Users { UserName = username, Password = password };
+                if (UsersDAO.Instance.CheckAdmin(username))
+                    return RedirectToAction("Index");
+                return RedirectToAction("DangNhap");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Tên đăng nhâp hoặc mật khẩu không đúng";
+                return View();
+            }
         }
-        public ActionResult QuanLyUser()
+        public ActionResult DangXuat()
         {
-            return View();
+            Session.Clear();
+            return RedirectToAction("DangNhap");
         }
     }
 }

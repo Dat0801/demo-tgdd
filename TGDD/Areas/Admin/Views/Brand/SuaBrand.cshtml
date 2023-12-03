@@ -15,6 +15,7 @@
         <div>
             Tên brand
             <input type="text" name="BrandName" class="form-control" value="@Model.BrandName" /><br />
+            @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
         </div>
         <div>
             Hình ảnh brand <br />
