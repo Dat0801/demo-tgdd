@@ -8,7 +8,7 @@ using MyClass.DAO;
 
 namespace TGDD.Controllers
 {
-    public class GioHangController : Controller
+    public class GioHangController : Controller 
     {
         //
         // GET: /GioHang/
@@ -66,18 +66,25 @@ namespace TGDD.Controllers
 
         public ActionResult ThemGioHang(int ms, string strURL)
         {
-            List<GioHang> listGioHang = LayGioHang();
-            GioHang sanpham = listGioHang.Find(sp => sp.iMaSP == ms);
-            if (sanpham == null)
+            if (Session["user"] != null)
             {
-                sanpham = new GioHang(ms);
-                listGioHang.Add(sanpham);
-                return Redirect(strURL);
+                List<GioHang> listGioHang = LayGioHang();
+                GioHang sanpham = listGioHang.Find(sp => sp.iMaSP == ms);
+                if (sanpham == null)
+                {
+                    sanpham = new GioHang(ms);
+                    listGioHang.Add(sanpham);
+                    return Redirect(strURL);
+                }
+                else
+                {
+                    sanpham.iSoLuong++;
+                    return View();
+                }
             }
             else
             {
-                sanpham.iSoLuong++;
-                return View();
+                return RedirectToAction("index", "home");
             }
         }
 
@@ -119,9 +126,6 @@ namespace TGDD.Controllers
         public List<Orders> LayHoaDon()
         {
             List<Orders> listOrders = new List<Orders>();
-            Orders orderadd = new Orders();
-            orderadd.UserName = "user3";
-            OrdersDAO.Instance.AddOrders(orderadd);
             listOrders = OrdersDAO.Instance.getData();
             return listOrders;
         }
@@ -135,9 +139,9 @@ namespace TGDD.Controllers
             List<OrderDetail> listOrderDetail = new List<OrderDetail>();
             List<Orders> listOrders = new List<Orders>();
 
-
+            Users user = Session["user"] as Users;
             Orders orderadd = new Orders();
-            orderadd.UserName = "user3";
+            orderadd.UserName = user.UserName;
             LuuHoaDon(orderadd);
 
             listOrders = LayHoaDon();

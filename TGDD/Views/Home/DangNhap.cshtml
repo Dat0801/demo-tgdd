@@ -1,5 +1,8 @@
 ﻿
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <script src="https://ajax.googleapis.com/ajax.libs/jquery/3.5.1/jquery.min.js">
 
 </script>
@@ -44,10 +47,15 @@
             <!-- Simple link -->
             <a href="#!">Bạn quên mật khẩu?</a>
         </div>
+        <div class="col" style="padding-left:150px;">
+            <a href="~/Home/DangKy">
+                Bạn chưa có tài khoản? - Đăng Ký
+            </a>
+        </div>
     </div>
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    <center><button type="submit" class="btn btn-primary">Đăng nhập</button></center>
 
     <!-- Register buttons -->
     <a href="/Home/DangKy" class="btn btn-primary">Đăng ký</a>

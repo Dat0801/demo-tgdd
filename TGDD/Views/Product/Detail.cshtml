@@ -3,21 +3,181 @@
     ViewBag.Title = "DetailPro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-    <div class="card table-responsive col" style="padding: 10px; max-width: 700px; margin-top: 20px;">
+    <div class="container" style="padding-top:30px;">
         <h3 class="card-title-h3">@Html.DisplayFor(model => model.ProductName)</h3>
+        <div class="row">
+            <div class="col">
+                <div class="img-main">
+                    <img class="card-img" width="100%" src="~/Content/img/product/@Html.DisplayFor(model => model.MetaKeywords)/@Html.DisplayFor(model => model.ProductImage)" alt="">
+                </div>
+            </div>
+            <div class="col">
+                <div class="block__promo">
+                    <div class="pr-top">
+                        <p class="pr-txtb" style="font-weight:bold;color:blue;">Khuyến mãi </p>
+                        <i class="pr-txt">Giá và khuyến mãi có thể kết thúc sớm hơn dự kiến</i>
+                    </div>
+                    <div class="pr-content">
+                        <div class="pr-item">
+                            <div class="divb t1" data-promotion="1803449" data-group="Tặng" data-discount="0" data-productcode="7042011000549       " data-tovalue="9500">
+                                <span class="nb">1---</span>
+                                <div class="divb-right">
+                                    <p>Cơ hội trúng 50 sổ tiết kiệm, tổng trị giá đến 500 triệu đồng </p>
+                                </div>
+                            </div>
+                            <div class="divb t2" data-promotion="2039089" data-group="WebNote" data-discount="0" data-productcode="" data-tovalue="20">
+                                <span class="nb">2---</span>
+                                <div class="divb-right">
+                                    <p>Hoàn 200,000đ cho chủ thẻ tín dụng HOME CREDIT khi thanh toán đơn hàng từ 5,000,000đ </p>
+                                </div>
+                            </div>
+                            <div class="divb t2" data-promotion="2022383" data-group="WebNote" data-discount="0" data-productcode="" data-tovalue="20">
+                                <span class="nb">3---</span>
+                                <div class="divb-right">
+                                    <p>Nhập mã VNPAYTGDD giảm từ 50,000đ đến 200,000đ (Áp dụng tùy giá trị đơn hàng) khi thanh toán qua VNPAY-QR </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <p style="text-decoration:line-through;">Giá:  @Html.DisplayFor(model => model.Price) </p>
+                <strong class="price" style=" color:red;">@Html.DisplayFor(model => model.PromotionPrice)</strong>
+                <hr /><br /><br />
+                <p>Số lượng tồn kho:  @Html.DisplayFor(model => model.Quantity)</p>
+                <p>Thời gian bảo hành:  @Html.DisplayFor(model => model.Warranty) tháng</p>
+                <a href="@Url.Action("ThemGioHang", "GioHang", new { @ms = @Html.DisplayFor(model => model.ProductID), @strURL = Request.Url.ToString() })" class="btn btn-warning">
+                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>Thêm Vào Giỏ
+                </a>
+            </div>
+        </div>
 
         <div class="row">
-            <div class="col-xl-6 col-md-6 mb-8">
-                <div class="img-main">
-                    <img class="card-img" src="~/Content/img/product/@Html.DisplayFor(model => model.MetaKeywords)/@Html.DisplayFor(model => model.ProductImage)" alt="">
-                </div>
+            <div class="col" style="padding-top:10px;">
                 <p>
                     Thông tin sản phẩm:<br />
                     @Html.DisplayFor(model => model.ProductDes)
                 </p>
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.ManHinh)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.ManHinh)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.HeDieuHanh)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.HeDieuHanh)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.Chip)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.Chip)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.RAM)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.RAM)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.DungLuong)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.DungLuong)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.KetNoi)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.KetNoi)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.Sim)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.Sim)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.CamSau)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.CamSau)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.CamTruoc)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.CamTruoc)</td>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.Pin_Sac)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.Pin_Sac)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailPro.Hang)</td>
+                        <td>@Html.DisplayFor(model => model.DetailPro.Hang)</td>
+                    </tr>
+                </table>
             </div>
-            <div class="col-xl-6 col-md-6 mb-4">
+            <div class="col">
+                <div style="padding-top:30px;">
+                    <p class="pr-txtb" style="font-weight:bold;color:blue;">Bảo hành </p>
+                    <ul class="policy__list border">
+                        <li>
+                            <p>1 đổi 1 trong <b>30 ngày</b> đối với sản phẩm lỗi  tại 3206 siêu thị toàn quốc</p>
+                        </li>
+                        <li>
+                            <p>Bảo hành <b>chính hãng điện thoại 1 năm</b> tại các trung tâm bảo hành hãng</p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<div class=" table-responsive" style="padding: 10px; max-width: 700px; margin-top: 20px;">
+        <h3 class="card-title-h3">@Html.DisplayFor(model => model.ProductName)</h3>
+
+        <div class="row" style="padding:10px;">
+            <div class=" col-sm col-xl-6 col-md-6 mb-4">
+                <div class="img-main">
+                    <img class="card-img"  width="100%" src="~/Content/img/product/@Html.DisplayFor(model => model.MetaKeywords)/@Html.DisplayFor(model => model.ProductImage)" alt="">
+                </div>
+                <div style="padding-top:30px;">
+                    <ul class="policy__list border">
+                        <li>
+                            <p>1 đổi 1 trong <b>30 ngày</b> đối với sản phẩm lỗi  tại 3206 siêu thị toàn quốc</p>
+                        </li>
+                        <li>
+                            <p>Bảo hành <b>chính hãng điện thoại 1 năm</b> tại các trung tâm bảo hành hãng</p>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm col-xl-6 col-md-6 mb-4">
+                <div class="block__promo">
+                    <div class="pr-top">
+                        <p class="pr-txtb">Khuyến mãi </p>
+                        <i class="pr-txt">Giá và khuyến mãi có thể kết thúc sớm hơn dự kiến</i>
+                    </div>
+                    <div class="pr-content">
+                        <div class="pr-item">
+                            <div class="divb t1" data-promotion="1803449" data-group="Tặng" data-discount="0" data-productcode="7042011000549       " data-tovalue="9500">
+                                <span class="nb">1</span>
+                                <div class="divb-right">
+                                    <p>Cơ hội trúng 50 sổ tiết kiệm, tổng trị giá đến 500 triệu đồng <a href="http://www.thegioididong.com/tin-tuc/sam-oppo-co-hoi-trung-50-so-tiet-kiem-tong-tri-gia-len-den-500-trieu-dong-1546797"> Xem chi tiết</a></p>
+                                </div>
+                            </div>
+                            <div class="divb t2" data-promotion="2039089" data-group="WebNote" data-discount="0" data-productcode="" data-tovalue="20">
+                                <span class="nb">2</span>
+                                <div class="divb-right">
+                                    <p>Hoàn 200,000đ cho chủ thẻ tín dụng HOME CREDIT khi thanh toán đơn hàng từ 5,000,000đ <a href="https://www.thegioididong.com/tin-tuc/hoan-tien-den-200K-khi-thanh-toan-qua-homecredit-1553498" target="_blank">(Xem chi tiết tại đây)</a></p>
+                                </div>
+                            </div>
+                            <div class="divb t2" data-promotion="2022383" data-group="WebNote" data-discount="0" data-productcode="" data-tovalue="20">
+                                <span class="nb">3</span>
+                                <div class="divb-right">
+                                    <p>Nhập mã VNPAYTGDD giảm từ 50,000đ đến 200,000đ (Áp dụng tùy giá trị đơn hàng) khi thanh toán qua VNPAY-QR <a href="https://www.thegioididong.com/tin-tuc/nhap-ma-vnpaytgdd-giam-tu-50000d-den-200000d-1555780" target="_blank">(Xem chi tiết tại đây)</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm col-xl-6 col-md-6 mb-4">
+                <p>
+                    Thông tin sản phẩm:<br />
+                    @Html.DisplayFor(model => model.ProductDes)
+                </p>
                 <p style="text-decoration:line-through;">Giá:   @Html.DisplayFor(model => model.Price)   </p>
                 <strong class="price" style=" color:red;">@Html.DisplayFor(model => model.PromotionPrice)</strong>
                 <hr /><br /><br />
@@ -28,7 +188,7 @@
         <a href="@Url.Action("ThemGioHang", "GioHang", new { @ms = @Html.DisplayFor(model => model.ProductID), @strURL = Request.Url.ToString() })" class="btn btn-warning">
             <i class="fa fa-shopping-basket" aria-hidden="true"></i>Thêm Vào Giỏ
         </a>
-    </div>
-</div>
+    </div>*@
+
 
 

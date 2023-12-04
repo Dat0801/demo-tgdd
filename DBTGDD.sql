@@ -56,27 +56,6 @@ CREATE TABLE Product
 	CONSTRAINT FK_Products_Brand FOREIGN KEY (BrandID) REFERENCES Brand(BrandID)
 )
 
-CREATE TABLE Slide 
-(
-	ID int identity (1,1),
-	Image nvarchar(250),
-	Link nvarchar(250),
-	Description NVARCHAR(250),
-	CreatedDate DATETIME DEFAULT GETDATE(),
-	CreatedBy VARCHAR(50),
-	ModifiedDate DATETIME DEFAULT GETDATE(),
-	ModifiedBy VARCHAR(50),
-	Active BIT DEFAULT 1,
-)
-
-CREATE TABLE Footer
-(
-	ID int IDENTITY(1,1),
-	Content nvarchar(500),
-	Active BIT DEFAULT 1,
-	constraint PK_Footer Primary key (ID)
-)
-
 CREATE TABLE Users
 (
 	UserName varchar(50) NOT NULL,
@@ -117,11 +96,89 @@ CREATE TABLE OrderDetail
 	Constraint FK_OrderDetail_Product Foreign key (ProductID) references Product(ProductID)
 )
 
-<<<<<<< HEAD
+CREATE TABLE DETAILPRO
+(
+	ProductID INT,
+	IDDetail INT identity(1,1),
 
+	ManHinh nvarchar(100),
+	HeDieuHanh  nvarchar(100),
+	Chip  nvarchar(100),
+	RAM  nvarchar(100),
+	DungLuong  nvarchar(100),
+	KetNoi nvarchar(100),
+	Sim nvarchar(100),
+	CamSau nvarchar(100),
+	CamTruoc nvarchar(100),
+	Pin_Sac nvarchar(100),
+	Hang nvarchar(100),
+	Loai nvarchar(100),
+	CONSTRAINT PK_DETAILPRO Primary Key (ProductID, IDDetail),
+	Constraint FK_DETAILPRO_Product Foreign key (ProductID) references Product(ProductID)
+)
+
+<<<<<<< HEAD
 
 =======
 >>>>>>> 3cc75450bc231e50d0d96e95e3d724e2313e6a08
+
+
+
+
+
+--delete from DETAILPRO
+--delete from Brand
+--delete from Product
+--delete from ProductCategory
+--delete from OrderDetail
+--delete from Orders
+--delete from Users
+
+
+--drop table ProductCategory
+--drop table OrderDetail
+--drop table Orders
+--drop table Users
+--drop table DETAILPRO
+--drop table Brand
+--drop table Product
+
+
+INSERT INTO DETAILPRO
+VALUES
+--Phone--
+	--Oppo--
+(1,N'AMOLED Chính 6.8" & Phụ 3.26"Full HD+', N'Android 13', N'MediaTek Dimensity 9000+ 8 nhân', N'8 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM', N'Chính 50 MP & Phụ 8 MP', N'32 MP', N'4300 mAh, 44W',N'OPPO', N'Phone'),
+(2,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
+(3,N'AMOLED 6.7"Quad HD+ (2K+)', N'Android 12', N'Snapdragon 8 Gen 1', N'12 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 50 MP & Phụ 50 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
+(4,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
+(5,N'AMOLED 6.7"Full HD+', N'Android 13', N'MediaTek Dimensity 7050 5G 8 nhân', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 64 MP & Phụ 32 MP, 8 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
+	--SamSung--
+(6,N'Super AMOLED 6.5" Full HD+', N'Android 13', N'MediaTek Helio G99', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM ', N'Chính 50 MP & Phụ 5 MP, 2 MP', N'13 MP', N'5000 mAh, 25 W', N'Samsung', N'Phone'),
+(7,N'Dynamic AMOLED 2X6.4" Full HD+', N'Android 12', N'Exynos 2100', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM ', N'Chính 12 MP & Phụ 12 MP, 8 MP', N'32 MP', N'4500 mAh, 25 W', N'Samsung', N'Phone'),
+(8,N'Dynamic AMOLED 2X6.8" Quad HD+ (2K+)', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'512 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 200 MP & Phụ 12 MP, 10 MP, 10 MP', N'12 MP', N'5000 mAh, 45 W', N'Samsung', N'Phone')
+
+
+select* from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID
+
+Select * from Product  where Product.ProductID =2
+
+Select distinct * from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID AND Product.ProductID =2
+
+
+
+Select p.ProductID, p.ProductName,ProductImage,od.Quantity,PromotionPrice,MetaKeywords
+from Product p inner join OrderDetail od on p.ProductID = od.ProductID
+inner join Orders o on od.OrderID = o.OrderID
+where o.UserName = 'user3'
+
+
+
+
+
+
+
+
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
 	(N'Điện Thoại','dien-thoai','admin1',N'dien-thoai',N'Điện Thoại',1,N'icon-phone-96x96.png'),
@@ -163,34 +220,7 @@ VALUES
 ('Baseus','logo-baseus.png', 6, 1),
 ('Xmobile','logo-xmobile.png', 6, 1)
 
-INSERT INTO Slide(Image,Link,Description,CreatedBy,Active)
-VALUES
-(N'banner1.jpg',N'~/Content/img/...',N'Banner1','admin1',1),
-(N'banner1.jpg',N'~/Content/img/...',N'Banner1','admin1',1),
-(N'banner1.jpg',N'~/Content/img/...',N'Banner1','admin1',1),
-(N'banner1.jpg',N'~/Content/img/...',N'Banner1','admin1',1),
-(N'banner1.jpg',N'~/Content/img/...',N'Banner1','admin1',1),
-(N'banner2.jpg',N'~/Content/img/...',N'Banner2','admin1',1),
-(N'banner2.jpg',N'~/Content/img/...',N'Banner2','admin1',1),
-(N'banner2.jpg',N'~/Content/img/...',N'Banner2','admin1',1),
-(N'banner2.jpg',N'~/Content/img/...',N'Banner2','admin1',1),
-(N'banner2.jpg',N'~/Content/img/...',N'Banner2','admin1',1),
-(N'banner3.jpg',N'~/Content/img/...',N'Banner3','admin1',1),
-(N'banner3.jpg',N'~/Content/img/...',N'Banner3','admin1',1),
-(N'banner3.jpg',N'~/Content/img/...',N'Banner3','admin1',1),
-(N'banner3.jpg',N'~/Content/img/...',N'Banner3','admin1',1),
-(N'banner3.jpg',N'~/Content/img/...',N'Banner3','admin1',1)
-select * from Slide
---delete from Slide
 
-INSERT INTO Footer(Content)
-VALUES
-(N'Trường Đại Học Công Thương'),
-(N'Nhóm 8'),
-(N'Link facebool'),
-(N'Link insta')
-select*from Footer
---delete from Footer
 
 
 
@@ -202,24 +232,24 @@ VALUES
 select*from Users
 --delete from Accounts
 
-
+--delete from Product
 INSERT INTO Product
 VALUES
 --Phone--
 	--Oppo--
-(N'OPPO Find N2 Flip 5G',N'OPPO Find N2 Flip 5G',N'Full HD+',1,1,30000000,5990000,N'OPPO Find N2 Flip 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'OPPO Reno8 T 5G',N'OPPO Reno8 T 5G',N'Full HD+',1,1,30000000,8490000,N'OPPO Reno8 T 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'OPPO Find X5 Pro 5G',N'OPPO Find X5 Pro 5G',N'Full HD+',1,1,30000000,17990000,N'OPPO Find X5 Pro 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'OPPO Find N2 Flip 5G',N'OPPO Find N2 Flip 5G',N'Full HD+',1,1,19990000,5990000,N'OPPO Find N2 Flip 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'OPPO Reno8 T 5G',N'OPPO Reno8 T 5G',N'Full HD+',1,1,9990000,8990000,N'OPPO Reno8 T 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'OPPO Find X5 Pro 5G',N'OPPO Find X5 Pro 5G',N'Full HD+',1,1,17990000,14990000,N'OPPO Find X5 Pro 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
 (N'OPPO Reno8 series',N'OPPO Reno8 series',N'Full HD+',1,1,30000000,13990000,N'OPPO Reno8 series.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'OPPO Reno10 5G',N'OPPO Reno10 5G',N'Full HD+',1,1,10190000,9990000,N'OPPO-Reno10-5G.jpg',1,12,'02/07/2022','admin1','02/07/2022','admin1',N'Phone',N' Reno10 5G',1),
+(N'OPPO Reno10 5G',N'OPPO Reno10 5G',N'Full HD+',1,1,9990000,9490000,N'OPPO-Reno10-5G.jpg',1,12,'02/07/2022','admin1','02/07/2022','admin1',N'Phone',N' Reno10 5G',1),
 	--SamSung--
-(N'Samsung Galaxy A24',N'Samsung Galaxy A24',N'Full HD+',1,2,30000000,3790000,N'Samsung Galaxy A24.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy S21 FE 5G',N'Samsung Galaxy S21 FE 5G',N'Full HD+',1,2,30000000,9990000,N'Samsung Galaxy S21 FE 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy S23 Ultra 5G',N'Samsung Galaxy S23 Ultra 5G',N'Quad HD+ (2K+)',1,2,30000000,23590000,N'Samsung Galaxy S23 Ultra 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy A34 5G',N'Samsung Galaxy A34 5G',N'Full HD+',1,2,30000000,7590000,N'Samsung Galaxy A34 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy Z Flip5 5G',N'Samsung Galaxy Z Flip5 5G',N'Full HD+',1,2,30000000,21990000,N'Samsung Galaxy Z Flip5 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy A04s',N'Samsung Galaxy A04s',N'Full HD+',1,2,30000000,3340000,N'Samsung Galaxy A04s.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
-(N'Samsung Galaxy Z Fold5 5G',N'Samsung Galaxy Z Fold5 5G',N'Quad HD+ (2K+)',1,2,10190000,9990000,N'Samsung-Galaxy-Z-Fold5-5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' Z Fold5 5G',1),
+(N'Samsung Galaxy A24',N'Samsung Galaxy A24',N'Full HD+',1,2,6990000,5990000,N'Samsung Galaxy A24.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy S21 FE 5G',N'Samsung Galaxy S21 FE 5G',N'Full HD+',1,2,7990000,6990000,N'Samsung Galaxy S21 FE 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy S23 Ultra 5G',N'Samsung Galaxy S23 Ultra 5G',N'Quad HD+ (2K+)',1,2,36990000,28990000,N'Samsung Galaxy S23 Ultra 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy A34 5G',N'Samsung Galaxy A34 5G',N'Full HD+',1,2,8490000,7490000,N'Samsung Galaxy A34 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy Z Flip5 5G',N'Samsung Galaxy Z Flip5 5G',N'Full HD+',1,2,29990000,25990000,N'Samsung Galaxy Z Flip5 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy A04s',N'Samsung Galaxy A04s',N'Full HD+',1,2,3990000,2990000,N'Samsung Galaxy A04s.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+(N'Samsung Galaxy Z Fold5 5G',N'Samsung Galaxy Z Fold5 5G',N'Quad HD+ (2K+)',1,2,60990000,40990000,N'Samsung-Galaxy-Z-Fold5-5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' Z Fold5 5G',1),
 	--Iphone--
 (N'iPhone 14',N'iPhone 14',N' Super Retina XDR',1,3,30000000,19190000,N'iPhone 14.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
 (N'iPhone 11',N'iPhone 11',N' Liquid Retina',1,3,30000000,10190000,N'iPhone 11.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
@@ -239,6 +269,30 @@ VALUES
 (N'realme  C55',N'realme  C55',N'Full HD+',1,6,30000000,1690000,N'realme  C55.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
 (N'realme C55',N'realme C55',N'Full HD+',1,6,30000000,4790000,N'realme C55.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
 (N'realme  10',N'realme  10',N'Full HD+',1,6,30000000,4490000,N'realme  10.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phone',N' ',1),
+--Tablet--
+	--Ipad--
+(N'iPad 9 WiFi',N'iPad 9 WiFi',N'Retina IPS LCD',3,15,30000000,7990000,N'iPad 9 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Air 5 M1 Wifi 64GB',N'iPad Air 5 M1 Wifi 64GB',N'Retina IPS LCD',3,15,30000000,14590000,N'iPad Air 5 M1 Wifi 64GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad 10 WiFi',N'iPad 10 WiFi',N'Retina IPS LCD ',3,15,30000000,11390000,N'iPad 10 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021)',N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021)',N'Liquid Retina',3,15,90000000,50990000,N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad mini 6 WiFi 256GB',N'iPad mini 6 WiFi 256GB',N'LED-backlit IPS LCD ',3,15,30000000,16390000,N'iPad mini 6 WiFi 256GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Pro M1 11 inch WiFi 2TB (2021)',N'iPad Pro M1 11 inch WiFi 2TB (2021)',N'Liquid Retina',3,15,80000000,44990000,N'iPad Pro M1 11 inch WiFi 2TB (2021).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Pro M2 11 inch WiFi',N'iPad Pro M2 11 inch WiFi',N'Liquid Retina',3,15,30000000,20690000,N'iPad Pro M2 11 inch WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Air 5 M1 5G',N'iPad Air 5 M1 5G',N'Retina IPS LCD',3,15,30000000,17990000,N'iPad Air 5 M1 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad mini 6 WiFi Cellular 64GB',N'iPad mini 6 WiFi Cellular 64GB',N'LED-backlit IPS LCD',3,15,30000000,15990000,N'iPad mini 6 WiFi Cellular 64GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'iPad Pro M1 12.9 inch WiFi',N'iPad Pro M1 12.9 inch WiFi',N'Liquid Retina XDR ',3,15,70000000,32690000,N'iPad Pro M1 12.9 inch WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+	--SamSung--
+(N'Samsung Galaxy Tab S9 Ultra 5G',N'Samsung Galaxy Tab S9 Ultra 5G',N'Dynamic AMOLED 2X',3,16,90000000,31990000,N'Samsung Galaxy Tab S9 Ultra 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab S9+ 5G',N'Samsung Galaxy Tab S9+ 5G',N'Dynamic AMOLED 2X',3,16,30000000,27990000,N'Samsung Galaxy Tab S9plus 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab A8 (2022)',N'Samsung Galaxy Tab A8 (2022)',N'TFT LCD',3,16,30000000,6490000,N'Samsung Galaxy Tab A8 (2022).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab A7 Lite',N'Samsung Galaxy Tab A7 Lite',N'TFT LCD',3,16,30000000,3690000,N'Samsung Galaxy Tab A7 Lite.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab S9+ WiFi',N'Samsung Galaxy Tab S9+ WiFi',N'Dynamic AMOLED 2X',3,16,30000000,24990000,N'Samsung Galaxy Tab S9plus WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab S9 5G',N'Samsung Galaxy Tab S9 5G',N'Dynamic AMOLED 2X',3,16,30000000,21990000,N'Samsung Galaxy Tab S9 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab S7 FE 4G',N'Samsung Galaxy Tab S7 FE 4G',N'TFT LCD ',3,16,30000000,9690000,N'Samsung Galaxy Tab S7 FE 4G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Samsung Galaxy Tab S9 WiFi',N'Samsung Galaxy Tab S9 WiFi',N'Dynamic AMOLED 2X',3,16,30000000,18990000,N'Samsung Galaxy Tab S9 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+	--Lenovo--
+(N'Lenovo Tab M8 (Gen 4)',N'Lenovo Tab M8 (Gen 4)',N'IPS LCD',3,17,30000000,3640000,N'Lenovo Tab M8 (Gen 4).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
+(N'Lenovo Tab M9',N'Lenovo Tab M9',N'IPS LCD ',3,17,30000000,4590000,N'Lenovo Tab M9.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
 --Laptop--
 	--MacBook--
 (N'MacBook Air 13 inch M1 2020 7-core GPU',N'MacBook Air 13 inch M1 2020 7-core GPU',N'• Màn hình: 15.6", Full HD, 165Hz',2,7,30000000,18990000,N'MacBook Air 13 inch M1 2020 7-core GPU.jpg',40,12,'02/07/2022','admin1','02/07/2022',null,N'Laptop',N' ',1),
@@ -275,30 +329,6 @@ VALUES
 (N'Gigabyte Gaming G5 i5 12500H (GE-51VN263SH)',N'Gigabyte Gaming G5 i5 12500H (GE-51VN263SH)',N'• Màn hình: 15.6", Full HD, 165Hz',2,13,30000000,18990000,N'Gigabyte Gaming G5 i5 12500H (GE-51VN263SH).jpg',20,12,'02/07/2022','admin1','02/07/2022',null,N'Laptop',N' ',1),
 	--Dell--
 (N'Dell Inspiron 15 3520 i5 1235U (N515122W1)',N'Dell Inspiron 15 3520 i5 1235U (N515122W1)',N'• Màn hình: 15.6", Full HD, 120Hz   • CPU: i5, 1235U, 1.3GHz    • Card: Intel UHD    • Pin: 3-cell, 41Wh   • Khối lượng: 1.9 kg',2,14,30000000,15490000,N'Dell Inspiron 15 3520 i5 1235U (N515122W1).jpg',10,12,'02/07/2022','admin1','02/07/2022',null,N'Laptop',N' ',1),
---Tablet--
-	--Ipad--
-(N'iPad 9 WiFi',N'iPad 9 WiFi',N'Retina IPS LCD',3,15,30000000,7990000,N'iPad 9 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Air 5 M1 Wifi 64GB',N'iPad Air 5 M1 Wifi 64GB',N'Retina IPS LCD',3,15,30000000,14590000,N'iPad Air 5 M1 Wifi 64GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad 10 WiFi',N'iPad 10 WiFi',N'Retina IPS LCD ',3,15,30000000,11390000,N'iPad 10 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021)',N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021)',N'Liquid Retina',3,15,90000000,50990000,N'iPad Pro M1 11 inch WiFi Cellular 2TB (2021).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad mini 6 WiFi 256GB',N'iPad mini 6 WiFi 256GB',N'LED-backlit IPS LCD ',3,15,30000000,16390000,N'iPad mini 6 WiFi 256GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Pro M1 11 inch WiFi 2TB (2021)',N'iPad Pro M1 11 inch WiFi 2TB (2021)',N'Liquid Retina',3,15,80000000,44990000,N'iPad Pro M1 11 inch WiFi 2TB (2021).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Pro M2 11 inch WiFi',N'iPad Pro M2 11 inch WiFi',N'Liquid Retina',3,15,30000000,20690000,N'iPad Pro M2 11 inch WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Air 5 M1 5G',N'iPad Air 5 M1 5G',N'Retina IPS LCD',3,15,30000000,17990000,N'iPad Air 5 M1 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad mini 6 WiFi Cellular 64GB',N'iPad mini 6 WiFi Cellular 64GB',N'LED-backlit IPS LCD',3,15,30000000,15990000,N'iPad mini 6 WiFi Cellular 64GB.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'iPad Pro M1 12.9 inch WiFi',N'iPad Pro M1 12.9 inch WiFi',N'Liquid Retina XDR ',3,15,70000000,32690000,N'iPad Pro M1 12.9 inch WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-	--SamSung--
-(N'Samsung Galaxy Tab S9 Ultra 5G',N'Samsung Galaxy Tab S9 Ultra 5G',N'Dynamic AMOLED 2X',3,16,90000000,31990000,N'Samsung Galaxy Tab S9 Ultra 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab S9+ 5G',N'Samsung Galaxy Tab S9+ 5G',N'Dynamic AMOLED 2X',3,16,30000000,27990000,N'Samsung Galaxy Tab S9plus 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab A8 (2022)',N'Samsung Galaxy Tab A8 (2022)',N'TFT LCD',3,16,30000000,6490000,N'Samsung Galaxy Tab A8 (2022).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab A7 Lite',N'Samsung Galaxy Tab A7 Lite',N'TFT LCD',3,16,30000000,3690000,N'Samsung Galaxy Tab A7 Lite.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab S9+ WiFi',N'Samsung Galaxy Tab S9+ WiFi',N'Dynamic AMOLED 2X',3,16,30000000,24990000,N'Samsung Galaxy Tab S9plus WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab S9 5G',N'Samsung Galaxy Tab S9 5G',N'Dynamic AMOLED 2X',3,16,30000000,21990000,N'Samsung Galaxy Tab S9 5G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab S7 FE 4G',N'Samsung Galaxy Tab S7 FE 4G',N'TFT LCD ',3,16,30000000,9690000,N'Samsung Galaxy Tab S7 FE 4G.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Samsung Galaxy Tab S9 WiFi',N'Samsung Galaxy Tab S9 WiFi',N'Dynamic AMOLED 2X',3,16,30000000,18990000,N'Samsung Galaxy Tab S9 WiFi.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-	--Lenovo--
-(N'Lenovo Tab M8 (Gen 4)',N'Lenovo Tab M8 (Gen 4)',N'IPS LCD',3,17,30000000,3640000,N'Lenovo Tab M8 (Gen 4).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
-(N'Lenovo Tab M9',N'Lenovo Tab M9',N'IPS LCD ',3,17,30000000,4590000,N'Lenovo Tab M9.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Tablet',N' ',1),
 --SmartWatch--
 	--Apple--
 (N'Apple Watch Series 9 GPS + Cellular 45mm ',N'Apple Watch Series 9 GPS + Cellular 45mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ',4,18,30000000,13890000,N'Apple Watch Series 9 GPS plus Cellular 45mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
