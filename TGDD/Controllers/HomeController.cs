@@ -56,22 +56,29 @@ namespace TGDD.Controllers
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
             return View();
         }
+
         [HttpPost]
-
-
-        public ActionResult DangKy(string username, string password, string name, string phone, string email, string address, Users user)
+        public ActionResult DangKy(Users Users)
         {
-            if (UsersDAO.Instance.Register(username, password, name, phone, email, address))
+            try
             {
-                ViewBag.SuccessMessage ="Đăng ký thành công!!!!";
-                return View(user);    
+                if (ModelState.IsValid)
+                {
+
+                    ViewBag.result = UsersDAO.Instance.Register(Users);
+                    ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
+                    return View();
+                }
             }
-            else
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = "Đăng ký không thành công. Tên đăng nhập đã tồn tại.";
-                return View(user);
             }
+            return View();
+            
+            
         }
+        
         public ActionResult DangXuat()
         {
             Session.Clear();
