@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace MyClass.Models
     public class Orders
     {
         public int OrderID { get; set; }
+        [Required(ErrorMessage = "Bắt buộc nhập ngày tạo")]
         public DateTime CreatedDate { get; set; }
+        [Required(ErrorMessage = "Bắt buộc nhập ngày giao")]
         public DateTime ShipDate { get; set; }
         public bool Status { get; set; }
         public bool ShipStatus { get; set; }

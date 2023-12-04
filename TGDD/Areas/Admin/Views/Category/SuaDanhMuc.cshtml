@@ -16,10 +16,11 @@
             Tên danh mục
             <br />
             <input type="text" name="CatName" class="form-control" value="@Model.CatName" /><br />
+            @Html.ValidationMessageFor(model => model.CatName, "", new { @class = "text-danger" })
         </div>
         <div>
             Hình ảnh danh mục <br />
-            <img src="~/Content/img/logo/@Model.CategoryImage" width="50"/>
+            <img src="~/Content/img/logo/@Model.CategoryImage" width="50" />
             <br />
             <br />
             <input type="text" name="CategoryImage" class="form-control" value="@Model.CategoryImage" />
@@ -27,7 +28,8 @@
         <br />
         <div>
             Seotitle
-            <input type="text" name="SeoTitle" class="form-control" value="@Model.SeoTitle"/>
+            <input type="text" name="SeoTitle" class="form-control" value="@Model.SeoTitle" />
+            @Html.ValidationMessageFor(model => model.SeoTitle, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>

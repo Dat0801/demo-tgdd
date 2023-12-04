@@ -1,7 +1,11 @@
-﻿@model MyClass.Models.Category 
+﻿@using MyClass.Models
+@model Category
 @{
     ViewBag.Title = "Thêm Danh Mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+@{
+    var user = Session["user"] as Users;
 }
 
 <center><h2>Thêm Danh Mục</h2></center>
@@ -10,6 +14,10 @@
         @if (ViewBag.result == 1)
         {
             <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Thêm thất bại</h5>
         }
         <div>
             Tên danh mục
@@ -25,20 +33,28 @@
         <div>
             Seotitle
             <input type="text" name="SeoTitle" class="form-control" />
+            @Html.ValidationMessageFor(model => model.SeoTitle, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>
             CreatedBy
             <select class="form-control" name="CreatedBy">
-                <option value="">Please Select ...</option>
-                @foreach (var user in ViewBag.listUser)
+                @if (user != null)
                 {
                     <option value="@user.UserName">
                         @user.UserName
                     </option>
                 }
+                else
+                {
+                    foreach (var usr in ViewBag.listUser)
+                    {
+                        <option value="@usr.UserName">
+                            @usr.UserName
+                        </option>
+                    }
+                }
             </select>
-            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
         </div>
         <br />
         <div style="width:25%;">

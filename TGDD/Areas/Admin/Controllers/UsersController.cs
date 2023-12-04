@@ -25,6 +25,7 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemUser(Users Users)
         {
+            ViewBag.result = 0;
             if (ModelState.IsValid)
             {
                 ViewBag.result = UsersDAO.Instance.AddUser(Users);
