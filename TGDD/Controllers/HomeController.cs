@@ -39,7 +39,7 @@ namespace TGDD.Controllers
         {
             if (UsersDAO.Instance.Login(username, password))
             {
-                Session["user"] = new Users { UserName = username, Password = password };
+                Session["user"] = UsersDAO.Instance.getData(username);
                 if (UsersDAO.Instance.CheckAdmin(username))
                     return RedirectToAction("Dashboard", "Admin");
                 return RedirectToAction("Index");
@@ -63,8 +63,8 @@ namespace TGDD.Controllers
         {
             if (UsersDAO.Instance.Register(username, password, name, phone, email, address))
             {
-                ViewBag.SuccessMessage ="Đăng ký thành công!!!!";
-                return View(user);    
+                ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
+                return View(user);
             }
             else
             {
@@ -77,10 +77,26 @@ namespace TGDD.Controllers
             Session.Clear();
             return RedirectToAction("Index");
         }
-        public ActionResult TimKiem(string searchStr) 
+        public ActionResult TimKiem(string searchStr)
         {
             var kqtimkiem = UsersDAO.Instance.TimKiem(searchStr);
             return View(kqtimkiem);
+        }
+
+        public ActionResult ThongTinKhachHang()
+        {
+            List<Product> listLichSu = new List<Product>();
+            if (Session["user"] != null)
+            {
+                var user = Session["user"] as Users;
+                ViewBag.name = user;
+                listLichSu = ProductDAO.Instance.GetLichSuMua(user.UserName);
+                return View(listLichSu);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }            
         }
     }
 }
