@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Drawing.Printing;
+
 namespace TGDD.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
@@ -60,6 +62,12 @@ namespace TGDD.Areas.Admin.Controllers
         {
             CategoryDAO.Instance.DeleteCategory(CatID);
             return RedirectToAction("XemDanhMuc");
+        }
+        public ActionResult TimKiem(string searchStr)
+        {
+            var kqtimkiem = CategoryDAO.Instance.TimKiem(searchStr);
+            
+            return View(kqtimkiem);
         }
     }
 }

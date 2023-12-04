@@ -66,5 +66,11 @@ namespace TGDD.Areas.Admin.Controllers
             OrdersDAO.Instance.DeleteOrders(OrderID);
             return RedirectToAction("XemOrders");
         }
+        public ActionResult TimKiem(string searchStr)
+        {
+            var kqtimkiem = OrdersDAO.Instance.TimKiem(searchStr);
+
+            return View(kqtimkiem);
+        }
     }
 }

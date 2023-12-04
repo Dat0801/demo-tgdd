@@ -79,7 +79,7 @@ namespace TGDD.Controllers
         }
         public ActionResult TimKiem(string searchStr) 
         {
-            var kqtimkiem = UsersDAO.Instance.TimKiem(searchStr);
+            var kqtimkiem = ProductDAO.Instance.TimKiem(searchStr);
             return View(kqtimkiem);
         }
     }

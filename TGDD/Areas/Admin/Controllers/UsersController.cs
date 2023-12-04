@@ -58,5 +58,11 @@ namespace TGDD.Areas.Admin.Controllers
             UsersDAO.Instance.DeleteUser(username);
             return RedirectToAction("XemUser");
         }
+        public ActionResult TimKiem(string searchStr)
+        {
+            var kqtimkiem =UsersDAO.Instance.TimKiem(searchStr);
+            ViewBag.listUser = UsersDAO.Instance.getData();
+            return View(kqtimkiem);
+        }
     }
 }
