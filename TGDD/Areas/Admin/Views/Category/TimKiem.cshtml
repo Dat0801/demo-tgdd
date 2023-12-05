@@ -1,9 +1,18 @@
 ﻿@model List<MyClass.Models.Category>
 
 @{
-    ViewBag.Title = "TimKiem";
+    ViewBag.Title = "Tìm Kiếm Danh Mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
+<h4><a href="/Admin/Category/ThemDanhMuc">Thêm danh mục</a></h4>
+<form class="d-flex" action="~/Admin/Category/TimKiem" method="post">
+    <div style="margin: 0 auto">
+        <input class="form-control me-2" type="search" placeholder="Tìm kiếm danh mục" aria-label="Tìm kiếm danh mục..." style="width:400px; margin: 0 auto" name="searchStr" id="searchStr">
+        <center>
+            <button class="btn btn-outline-success m-2" type="submit">Search</button>
+        </center>
+    </div>
+</form>
 <table class="table table-dark table-bordered">
     <thead>
         <tr>

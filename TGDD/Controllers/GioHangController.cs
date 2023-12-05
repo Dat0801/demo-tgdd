@@ -8,7 +8,7 @@ using MyClass.DAO;
 
 namespace TGDD.Controllers
 {
-    public class GioHangController : Controller 
+    public class GioHangController : Controller
     {
         //
         // GET: /GioHang/
@@ -109,6 +109,7 @@ namespace TGDD.Controllers
         {
             List<GioHang> listGioHang = LayGioHang();
             listGioHang.Clear();
+            Session["GioHang"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -148,7 +149,7 @@ namespace TGDD.Controllers
             Orders order = new Orders();
             order = listOrders.Last();
 
-            foreach(var a in listGioHang )
+            foreach (var a in listGioHang)
             {
                 OrderDetail detail = new OrderDetail();
                 detail.OrderID = order.OrderID;
@@ -158,7 +159,7 @@ namespace TGDD.Controllers
 
                 listOrderDetail.Add(detail);
             }
-            foreach(var item in listOrderDetail)
+            foreach (var item in listOrderDetail)
             {
                 OrdersDAO.Instance.AddOrderDetail(item);
             }
@@ -168,5 +169,5 @@ namespace TGDD.Controllers
 
 
         }
-	}
+    }
 }

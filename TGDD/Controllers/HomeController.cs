@@ -66,7 +66,7 @@ namespace TGDD.Controllers
                 if (ModelState.IsValid)
                 {
 
-                        ViewBag.result = UsersDAO.Instance.Register(Users);
+                        ViewBag.result = UsersDAO.Instance.Register(user);
                         ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
                         return View();
                 }
@@ -104,7 +104,7 @@ namespace TGDD.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("DangNhap");
             }            
         }
     }

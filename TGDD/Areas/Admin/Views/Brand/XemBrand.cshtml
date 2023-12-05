@@ -7,8 +7,12 @@
 <h4><a href="/Admin/Brand/ThemBrand">Thêm Brand</a></h4>
 <!-- Topbar Search -->
 <form class="d-flex" action="~/Admin/Brand/TimKiem" method="post">
-    <input class="form-control me-2" type="search" placeholder="Tìm kiếm Brand" aria-label="Tìm kiếm Brand..." style="width:400px;"name="searchStr" id="searchStr">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+    <div style="margin: 0 auto">
+        <input class="form-control me-2" type="search" placeholder="Tìm kiếm danh mục" aria-label="Tìm kiếm danh mục..." style="width:400px; margin: 0 auto" name="searchStr" id="searchStr">
+        <center>
+            <button class="btn btn-outline-success m-2" type="submit">Search</button>
+        </center>
+    </div>
 </form>
 @model PagedList.IPagedList<MyClass.Models.Brand>
 @using PagedList.Mvc;
