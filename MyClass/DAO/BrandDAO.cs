@@ -96,5 +96,31 @@ namespace MyClass.DAO
             int rs = DataProvider.Instance.ExecuteNonQuery(query);
             return rs;
         }
+        
+        public List<Brand> TimKiem(string searchStr)
+        {
+            try
+            {
+                List<Brand> listBrand = new List<Brand>();
+                string query = "SELECT * FROM Brand WHERE BrandName LIKE @tenbrand";
+                object[] parameters = { "%" + searchStr + "%" };
+
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var brand = new Brand(row);
+                        listBrand.Add(brand);
+                    }
+                }
+
+                return listBrand;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

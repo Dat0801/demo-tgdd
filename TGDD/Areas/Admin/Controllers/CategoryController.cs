@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System.Drawing.Printing;
 
 namespace TGDD.Areas.Admin.Controllers
 {
@@ -12,10 +14,13 @@ namespace TGDD.Areas.Admin.Controllers
     {
         List<Category> listCategory = new List<Category>();
         // GET: Admin/Category
-        public ActionResult XemDanhMuc()
+        public ActionResult XemDanhMuc(int? page)
         {
-            listCategory = CategoryDAO.Instance.getData();
-            return View(listCategory);
+            int pagesize = 20;
+            int pageNumber = (page ?? 1);
+            var listDM = CategoryDAO.Instance.getData().ToPagedList(pageNumber, pagesize);
+            //listCategory = CategoryDAO.Instance.getData();
+            return View(listDM);
         }
 
         public ActionResult ThemDanhMuc()
@@ -58,6 +63,12 @@ namespace TGDD.Areas.Admin.Controllers
         {
             CategoryDAO.Instance.DeleteCategory(CatID);
             return RedirectToAction("XemDanhMuc");
+        }
+        public ActionResult TimKiem(string searchStr)
+        {
+            var kqtimkiem = CategoryDAO.Instance.TimKiem(searchStr);
+            
+            return View(kqtimkiem);
         }
     }
 }

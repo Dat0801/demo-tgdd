@@ -139,28 +139,6 @@ CREATE TABLE DETAILLAP
 	Constraint FK_DETAILLAP_Product Foreign key (ProductID) references Product(ProductID)
 )
 
---delete from DETAILPRO
---delete from Brand
---delete from Product
---delete from ProductCategory
---delete from OrderDetail
---delete from Orders
---delete from Users
-
-
---drop table ProductCategory
---drop table OrderDetail
---drop table Orders
---drop table Users
---drop table DETAILPRO
---drop table Brand
---drop table Product
-
-
-
-
-
-
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
 	(N'Điện Thoại','dien-thoai','admin1',N'dien-thoai',N'Điện Thoại',1,N'icon-phone-96x96.png'),

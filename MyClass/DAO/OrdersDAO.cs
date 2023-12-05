@@ -55,6 +55,13 @@ namespace MyClass.DAO
             }
         }
 
+        public int AddOrderUser(Orders Orders)
+        {
+            string queryOrders = "insert into Orders(UserName) values('" + Orders.UserName + "')";
+            int rsOrders = DataProvider.Instance.ExecuteNonQuery(queryOrders);
+            return rsOrders;
+        }
+
         public int AddOrders(Orders Orders)
         {
             string queryOrders = "insert into Orders values('" + Orders.CreatedDate + "', '" + Orders.ShipDate + "', '" + Orders.Status + "', '" + Orders.ShipStatus + "', '" + Orders.UserName + "')";
@@ -81,6 +88,31 @@ namespace MyClass.DAO
                "where OrderID = '" + OrderID + "' ";
             int rs = DataProvider.Instance.ExecuteNonQuery(query);
             return rs;
+        }
+        public List<Orders> TimKiem(string searchStr)
+        {
+            try
+            {
+                List<Orders> listOders = new List<Orders>();
+                string query = "SELECT * FROM Orders WHERE UserName LIKE @nameUser";
+                object[] parameters = { "%" + searchStr + "%" };
+
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var ord = new Orders(row);
+                        listOders.Add(ord);
+                    }
+                }
+
+                return listOders;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
         }
     }
 }

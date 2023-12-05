@@ -10,7 +10,8 @@
 <script src="https://ajax.googleapis.com/ajax.libs/jquery/3.5.1/jquery.min.js">
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <form action="~/Home/DangKy" method="post" style="width:35%;height: 70%; margin:0 auto;margin-top: 40px">
     <div class="form-outline mb-4">
         <center><label class="form-label mb-auto" for="form2Example2"><h3><b>Đăng ký</b></h3></label></center>
@@ -25,19 +26,19 @@
     </div>
     <!-- Password input -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Password</label>
+        <label class="form-label" for="form2Example2">Mật khẩu</label>
         <input type="password" name="password" id="password" class="form-control" />
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
     </div>
     <!-- Name input -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Name</label>
+        <label class="form-label" for="form2Example2">Họ và tên</label>
         <input type="text" name="name" id="name" class="form-control" />
         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
     </div>
     <!-- Phone input -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Phone</label>
+        <label class="form-label" for="form2Example2">Số điện thoại</label>
         <input type="text" name="phone" id="phone" class="form-control" />
         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
     </div>
@@ -48,21 +49,49 @@
     </div>
     <!-- Address input -->
     <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Address</label>
-        <input type="text" name="address" id="address" class="form-control" />
-        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        
+        <table class="table">
+            <tr>
+                <td colspan="9" style="font-size: large; padding:10px;">
+                    <b>Chọn địa chỉ để nhận hàng</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding: 10px;">
+                    <select name="province" id="province" size="1" class="btn btn-outline-success" style="width:400px;">
+                    </select>
+                </td>
+                <td colspan="4">
+                    <select name="district" id="district" size="1" class="btn btn-outline-success" style="width:400px;">
+                        <option value="" selected="selected">Chọn Quận/Huyện</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <select name="ward" id="ward" size="1" class="btn btn-outline-success" style="width:400px;">
+                        <option value="" selected="selected">Chọn Phường/Xã</option>
+                    </select>
+                </td>
+                <td colspan="4">
+                    <div class="filladdress">
+                        <input placeholder="Số nhà, tên đường" name="address" maxlength="255" style="width:400px; border-radius: 5px; padding: 5px;">
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
+    <div>
         <div>
-            <div>
-                <span style="color:green">@ViewBag.SuccessMessage</span>
-                
-                <span style="color:red">@ViewBag.ErrorMessage</span>
-            </div>
+            <span style="color:green">@ViewBag.SuccessMessage</span>
+
+            <span style="color:red">@ViewBag.ErrorMessage</span>
         </div>
-        <div class="col">
-            <!-- Simple link -->
-            <a href="~/Home/dangnhap">Bạn đã có tài khoản?</a>
-        </div>
+    </div>
+    <div class="col">
+        <!-- Simple link -->
+        <a href="~/Home/dangnhap">Bạn đã có tài khoản?</a>
     </div>
 
     <!-- Submit button -->
@@ -72,5 +101,40 @@
 
 </form>
 
-</div>
+<script>
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province");
+            });
+    }
+    callAPI('https://provinces.open-api.vn/api/?depth=1');
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward");
+            });
+    }
 
+    var renderData = (array, select) => {
+        let row = ' <option disable value="">Chọn</option>';
+        array.forEach(element => {
+            row += `<option value="${element.name}" data-code="${element.code}">${element.name}</option>`
+        });
+        document.querySelector("#" + select).innerHTML = row
+    }
+
+    $("#province").change(() => {
+        callApiDistrict(host + "p/" + $("#province option:selected").attr('data-code') + "?depth=2");
+    });
+    $("#district").change(() => {
+        callApiWard(host + "d/" + $("#district option:selected").attr('data-code')  + "?depth=2");
+    });
+</script>
