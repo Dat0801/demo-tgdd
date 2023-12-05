@@ -39,7 +39,7 @@ namespace TGDD.Controllers
         {
             if (UsersDAO.Instance.Login(username, password))
             {
-                Session["user"] = new Users { UserName = username, Password = password };
+                Session["user"] = UsersDAO.Instance.getData(username);
                 if (UsersDAO.Instance.CheckAdmin(username))
                     return RedirectToAction("Dashboard", "Admin");
                 return RedirectToAction("Index");
@@ -58,21 +58,23 @@ namespace TGDD.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangKy(Users Users)
+        public ActionResult DangKy(Users user, string province, string district, string ward)
         {
+            user.Address += " " + ward  + " " + district + " " + province;
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    ViewBag.result = UsersDAO.Instance.Register(Users);
-                    ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
-                    return View();
+                        ViewBag.result = UsersDAO.Instance.Register(Users);
+                        ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
+                        return View();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Đăng ký không thành công. Tên đăng nhập đã tồn tại.";
+                ViewBag.ErrorMessage = "Đăng ký không thành công.";
+                return View(user);
             }
             return View();
             
@@ -84,10 +86,26 @@ namespace TGDD.Controllers
             Session.Clear();
             return RedirectToAction("Index");
         }
-        public ActionResult TimKiem(string searchStr) 
+        public ActionResult TimKiem(string searchStr)
         {
             var kqtimkiem = ProductDAO.Instance.TimKiem(searchStr);
             return View(kqtimkiem);
+        }
+
+        public ActionResult ThongTinKhachHang()
+        {
+            List<Product> listLichSu = new List<Product>();
+            if (Session["user"] != null)
+            {
+                var user = Session["user"] as Users;
+                ViewBag.name = user;
+                listLichSu = ProductDAO.Instance.GetLichSuMua(user.UserName);
+                return View(listLichSu);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }            
         }
     }
 }

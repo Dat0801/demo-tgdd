@@ -32,6 +32,7 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemBrand(Brand brand)
         {
+            ViewBag.result = 0;
             ViewBag.listCategory = CategoryDAO.Instance.getData();
             if (ModelState.IsValid)
             {

@@ -3,7 +3,8 @@
     ViewBag.Title = "Xem Danh Mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
-<h4><a href="/Admin/Category/ThemDanhMuc">Create New</a></h4>
+
+<h4><a href="/Admin/Category/ThemDanhMuc">Thêm danh mục</a></h4>
 @model PagedList.IPagedList<MyClass.Models.Category>
 @using PagedList.Mvc;
 <form class="d-flex" action="~/Admin/Category/TimKiem" method="post">

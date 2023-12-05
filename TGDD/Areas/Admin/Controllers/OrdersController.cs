@@ -30,6 +30,7 @@ namespace TGDD.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ThemOrder(Orders order)
         {
+            ViewBag.result = 0;
             ViewBag.listUser = UsersDAO.Instance.getDataUser();
             if (ModelState.IsValid)
             {

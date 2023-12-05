@@ -97,7 +97,7 @@ namespace MyClass.DAO
         public int AddUser(Users user)
         {
             string query = "insert into Users(UserName, Password, Name, Phone, Email, Address, Role, Active)" +
-                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', '" + user.Address + "', '" + user.Role + "', '" + user.Active + "')";
+                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', N'" + user.Address + "', '" + user.Role + "', '" + user.Active + "')";
             int rs = DataProvider.Instance.ExecuteNonQuery(query);
             return rs;
         }
@@ -129,40 +129,22 @@ namespace MyClass.DAO
             DataTable result = DataProvider.Instance.ExecuteQuery(query);
             return result.Rows.Count > 0;
         }
-        public int Register(Users user)
+        public bool Register(Users user)
         {
+            try
+            {
                 string query = "insert into Users(UserName, Password, Name, Phone, Email, Address, Role, Active)" +
-                    "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', '" + user.Address + "','User', 1)";
+                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', N'" + user.Address + "', 'User', '1')";
                 int rs = DataProvider.Instance.ExecuteNonQuery(query);
-                return rs;
-
+                return (rs == 1 ? true : false);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
         }
-        //public bool Register(string username, string password, string name, string phone, string email, string address)
-        //{
-        //    try
-        //    {
-        //        string query = "INSERT INTO Users (UserName, Password, Name, Phone, Email, Address, Role, Active) " +
-        //                       "VALUES (@UserName, @Password, @Name, @Phone, @Email, @Address, 'User', 1)";
-        //        SqlCommand cmd = new SqlCommand(query);
-        //        cmd.Parameters.AddWithValue("@UserName", username);
-        //        cmd.Parameters.AddWithValue("@Password", password);
-        //        cmd.Parameters.AddWithValue("@Name", name);
-        //        cmd.Parameters.AddWithValue("@Phone", phone);
-        //        cmd.Parameters.AddWithValue("@Email", email);
-        //        cmd.Parameters.AddWithValue("@Address", address);
-        //        int rowsAffected = DataProvider.Instance.ExecuteNonQuery(query);
-        //        return rowsAffected > 0;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error: " + ex.Message);
-        //        return false;
-        //        string query = "insert into Users(UserName, Password, Name, Phone, Email, Address, Role, Active)" +
-        //        "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', '" + user.Address + "', '" + user.Role + "', '" + user.Active + "')";
-        //        int rs = DataProvider.Instance.ExecuteNonQuery(query);
-        //        return rs;
-        //    }
-        //}
         public List<Users> TimKiem(string searchStr)
         {
             try

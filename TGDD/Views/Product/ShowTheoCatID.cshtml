@@ -16,7 +16,7 @@
     {
         <li class="item" style="width:250px; margin:10px; display:inline-block;">
             <a href="~/Product/Detail?ProductID=@item.ProductID" style="text-decoration:none;">
-                <div class="card" style="width:250px;">
+                <div class="card" style="width: 250px; height: 500px;">
                     <div class="img-main">
                         <img class="card-img" src="~/Content/img/product/@item.MetaKeywords/@item.ProductImage" alt="">
                     </div>
@@ -29,8 +29,9 @@
                         {
                             <h6 class="card-title" style="overflow: hidden; display:block; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2">@item.ProductName</h6>
                         }
-                        <p class="card-subtitle" style="text-decoration:line-through;">@item.Price</p>
-                        <strong class="price" style="color:red;">@item.PromotionPrice</strong>
+                        <p class="card-subtitle" style="text-decoration:line-through;">Giá: @item.Price.ToString("#,##0.##")</p>
+                        <strong class="price" style="color:red;">Giảm còn: @item.PromotionPrice.ToString("#,##0.##")</strong>
+                        <p class="card-footer">@item.ProductDes</p>    
                         <div class="item-rating">
                             <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>
                             <i class="fa fa-star " aria-hidden="true" style="color:orange;"></i>

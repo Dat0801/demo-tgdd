@@ -35,7 +35,18 @@
                 @using (Html.BeginForm("CapNHatGioHang", "GioHang", new { MaSp = @item.iMaSP }))
                 {
                     <td width="12%">
-                        <input type="number" name="txtSoLuong" value="@item.iSoLuong" id="txtSoLuong" />
+                        <input type="number" name="txtSoLuong" value="@item.iSoLuong" id="txtSoLuong" oninput="checkMinValue()"/>
+                        <script>
+                            function checkMinValue() {
+                                var inputElement = document.getElementById("txtSoLuong");
+                                var currentValue = parseInt(inputElement.value);
+
+                                if (currentValue < 1) {
+                                    inputElement.value = 1;
+                                    document.getElementById("txtSoLuong").style.display = "block";
+                                }
+                            }
+                        </script>
                     </td>
                     <td width="12%">@String.Format("{0:0,0}", item.dDonGia)</td>
                     <td width="16%">@String.Format("{0:0,0}", item.dThanhTien)</td>
@@ -47,35 +58,7 @@
                 }
             </tr>
         }
-        <tr>
-            <td colspan="9" style="font-size: large; padding:10px;">
-                <b>Chọn địa chỉ để nhận hàng</b>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" style="padding: 10px;">
-                <select name="state" id="countySel" size="1" class="btn btn-outline-success" style="width:400px;">
-                    <option value="" selected="selected">Chọn Tỉnh/Thành Phố</option>
-                </select>
-            </td>
-            <td colspan="4">
-                <select name="countrya" id="stateSel" size="1" class="btn btn-outline-success" style="width:400px;">
-                    <option value="" selected="selected">Chọn Quận/Huyện</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <select name="district" id="districtSel" size="1" class="btn btn-outline-success" style="width:400px;">
-                    <option value="" selected="selected">Chọn Phường/Xã</option>
-                </select>
-            </td>
-            <td colspan="4">
-                <div class="filladdress">
-                    <input placeholder="Số nhà, tên đường" maxlength="255" style="width:400px; border-radius: 5px; padding: 5px;">
-                </div>
-            </td>
-        </tr>
+        
         <tr>
             <td></td>
             <td></td>
@@ -91,10 +74,6 @@
         </tr>
         <tr>
             <td colspan="9">
-                @*<button class="btn btn-success" onclick="~/GioHang/LuuHoaDon" type="submit" style="width:98%; margin: 10px; padding: 10px;">
-        Mua Hàng
-
-    </button>*@
                 <a href="~/GioHang/LuuHoaDonDetail" class="btn btn-success" style="width:98%; margin: 10px; padding: 10px;">
                     Mua Hàng
                 </a>

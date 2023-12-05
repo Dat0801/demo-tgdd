@@ -30,6 +30,7 @@
         <div>
             MetaKeywords
             <input type="text" name="MetaKeywords" class="form-control" value="@Model.MetaKeywords" />
+            @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>
@@ -57,7 +58,6 @@
                     }
 
                 }
-                @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
             </select>
         </div>
         <br />
@@ -80,8 +80,6 @@
                     }
 
                 }
-
-                @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
             </select>
         </div>
         <br />
@@ -124,7 +122,6 @@
                     }
 
                 }
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
             </select>
         </div>
         <br />

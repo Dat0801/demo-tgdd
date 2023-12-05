@@ -3,6 +3,8 @@
     ViewBag.Title = "Thêm Tài Khoản";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @model MyClass.Models.Users
 <center><h2>Thêm Người Dùng</h2></center>
 <form action="/Admin/Users/ThemUser" method="post">
@@ -10,6 +12,10 @@
         @if (ViewBag.result == 1)
         {
             <h5 style="color:greenyellow">Thêm thành công</h5>
+        }
+        else if (ViewBag.result == 0)
+        {
+            <h5 style="color:red">Thêm thất bại</h5>
         }
         <div>
             Tài khoản
@@ -40,10 +46,38 @@
             @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
         </div>
         <br />
-        <div>
-            Address
-            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
-        </div>
+        <table class="table">
+            <tr>
+                <td colspan="9" style="font-size: large; padding:10px;">
+                    <b>Chọn địa chỉ để nhận hàng</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding: 10px;">
+                    <select name="province" id="province" size="1" class="btn btn-outline-success" style="width:400px;">
+                    </select>
+                </td>
+                <td colspan="4">
+                    <select name="district" id="district" size="1" class="btn btn-outline-success" style="width:400px;">
+                        <option value="" selected="selected">Chọn Quận/Huyện</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <select name="ward" id="ward" size="1" class="btn btn-outline-success" style="width:400px;">
+                        <option value="" selected="selected">Chọn Phường/Xã</option>
+                    </select>
+                </td>
+                <td colspan="4">
+                    <div class="filladdress">
+                        <input placeholder="Số nhà, tên đường" name="Address" maxlength="255" style="width:400px; border-radius: 5px; padding: 5px;">
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+            </tr>
+        </table>
         <br />
         <div style="width:25%;">
             Role
@@ -66,5 +100,42 @@
         </div>
     </div>
 </form>
-<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang sản phẩm</a></h4>
+<h4><a href="/Admin/Users/XemUser" style="margin-left: 50px;">Trở lại trang người dùng</a></h4>
+<script>
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province");
+            });
+    }
+    callAPI('https://provinces.open-api.vn/api/?depth=1');
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward");
+            });
+    }
+
+    var renderData = (array, select) => {
+        let row = ' <option disable value="">Chọn</option>';
+        array.forEach(element => {
+            row += `<option value="${element.name}" data-code="${element.code}">${element.name}</option>`
+        });
+        document.querySelector("#" + select).innerHTML = row
+    }
+
+    $("#province").change(() => {
+        callApiDistrict(host + "p/" + $("#province option:selected").attr('data-code') + "?depth=2");
+    });
+    $("#district").change(() => {
+        callApiWard(host + "d/" + $("#district option:selected").attr('data-code') + "?depth=2");
+    });
+</script>
 

@@ -1,9 +1,12 @@
-﻿@model MyClass.Models.Product
+﻿@using MyClass.Models
+@model Product
 @{
     ViewBag.Title = "Thêm Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
 }
-
+@{
+    var user = Session["user"] as Users;
+}
 <center><h2>Thêm Sản Phẩm</h2></center>
 <form action="/Admin/Product/ThemSP" method="post">
     <div style="width: 70%; margin-left: 50px">
@@ -30,6 +33,7 @@
         <div>
             MetaKeywords
             <input type="text" name="MetaKeywords" class="form-control" />
+            @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
         <br />
         <div>
@@ -39,8 +43,8 @@
         <br />
         <div>
             Danh mục
-            <select class="form-control" name="CatID" id="category">
-                <option value="">Please Select ...</option>
+            <select class="form-control" name="CatID" id="categoryDropdown">
+                <option  value="" >Chọn danh mục</option>
                 @foreach (var cat in ViewBag.listCategory)
                 {
                     <option value="@cat.CatID">
@@ -52,17 +56,33 @@
         </div>
         <br /><div>
             Brand
-            <select class="form-control" name="BrandID" id="brandList">
-                <option value="">Please Select ...</option>
-                @foreach (var brand in ViewBag.listBrand)
-                {
-                    <option value="@brand.BrandID">
-                        @brand.BrandName
-                    </option>
-                }
+            <select class="form-control" name="BrandID" id="brandDropdown">
             </select>
-            @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
         </div>
+        <script>
+            $(document).ready(function () {
+                $("#categoryDropdown").change(function () {
+                    var catId = $(this).val(); // Lấy giá trị của danh mục được chọn
+                    getBrands(catId);
+                });
+            });
+
+            function getBrands(catId) {
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/brand?catid=${catId}`,
+                    success: (responses) => {
+                        $('#brandDropdown').empty();
+                        for (var i = 0; i <= responses.length; i++) {
+                            const brandRow = responses[i];
+                            const strHTML = '<option value="' + brandRow.BrandID + '">' + brandRow.BrandName + '</option>'
+                            $('#brandDropdown').append(strHTML);
+                        }
+                    },
+                    error: (err) => { console.log(error); }
+                });
+            }
+        </script>
         <br />
         <div style="width:25%;">
             Giá
@@ -87,15 +107,22 @@
         <div>
             CreatedBy
             <select class="form-control" name="CreatedBy">
-                <option value="">Please Select ...</option>
-                @foreach (var user in ViewBag.listUser)
+                @if (user != null)
                 {
                     <option value="@user.UserName">
                         @user.UserName
                     </option>
                 }
+                else
+                {
+                    foreach (var usr in ViewBag.listUser)
+                    {
+                        <option value="@usr.UserName">
+                            @usr.UserName
+                        </option>
+                    }
+                }
             </select>
-            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
         </div>
         <br />
         <div style="width:25%;">
