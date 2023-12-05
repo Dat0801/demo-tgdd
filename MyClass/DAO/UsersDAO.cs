@@ -145,24 +145,29 @@ namespace MyClass.DAO
                 return false;
             }
         }
-        public List<Product> TimKiem(string searchStr)
+        public List<Users> TimKiem(string searchStr)
         {
             try
             {
-                List<Product> listPrd = new List<Product>();
-                string query = "SELECT * FROM Product WHERE ProductName LIKE '%" + searchStr + "%'";
-                DataTable dt = DataProvider.Instance.ExecuteQuery(query);
-                foreach (DataRow row in dt.Rows)
-                {
-                    var product = new Product(row,1);
-                    listPrd.Add(product);
-                }
-                return listPrd;
+                List<Users> listUser = new List<Users>();
+                string query = "SELECT * FROM Users WHERE UserName LIKE @tendn";
+                object[] parameters = { "%" + searchStr + "%" };
 
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var user = new Users(row);
+                        listUser.Add(user);
+                    }
+                }
+
+                return listUser;
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
             }
         }
     }

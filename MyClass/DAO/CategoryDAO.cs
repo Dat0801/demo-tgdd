@@ -75,5 +75,30 @@ namespace MyClass.DAO
             int rs = DataProvider.Instance.ExecuteNonQuery(query);
             return rs;
         }
+        public List<Category> TimKiem(string searchStr)
+        {
+            try
+            {
+                List<Category> listCategory = new List<Category>();
+                string query = "SELECT * FROM ProductCategory WHERE CatName LIKE @tencat";
+                object[] parameters = { "%" + searchStr + "%" };
+
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var cat = new Category(row);
+                        listCategory.Add(cat);
+                    }
+                }
+
+                return listCategory;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

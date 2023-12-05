@@ -152,5 +152,30 @@ namespace MyClass.DAO
                 return rs;
             return rs1;
         }
+        public List<Product> TimKiem(string searchStr)
+        {
+            try
+            {
+                List<Product> listPrd = new List<Product>();
+                string query = "SELECT * FROM Product WHERE ProductName LIKE @tensp";
+                object[] parameters = { "%" + searchStr + "%" };
+
+                using (DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters))
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var product = new Product(row);
+                        listPrd.Add(product);
+                    }
+                }
+
+                return listPrd;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

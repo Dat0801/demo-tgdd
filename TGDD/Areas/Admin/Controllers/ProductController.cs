@@ -76,5 +76,13 @@ namespace TGDD.Areas.Admin.Controllers
             ProductDAO.Instance.DeleteProduct(ProductID);
             return RedirectToAction("XemSP");
         }
+        public ActionResult TimKiem(string searchStr)
+        {
+            var kqtimkiem = ProductDAO.Instance.TimKiem(searchStr);
+            ViewBag.listBrand = BrandDAO.Instance.getData();
+            ViewBag.listCategory = CategoryDAO.Instance.getData();
+            return View(kqtimkiem);
+        }
+
     }
 }

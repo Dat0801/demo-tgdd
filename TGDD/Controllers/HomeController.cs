@@ -56,23 +56,31 @@ namespace TGDD.Controllers
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
             return View();
         }
+
         [HttpPost]
-
-
         public ActionResult DangKy(Users user, string province, string district, string ward)
         {
             user.Address += " " + ward  + " " + district + " " + province;
-            if (UsersDAO.Instance.Register(user))
+            try
             {
-                ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
-                return View(user);
+                if (ModelState.IsValid)
+                {
+
+                        ViewBag.result = UsersDAO.Instance.Register(Users);
+                        ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
+                        return View();
+                }
             }
-            else
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = "Đăng ký không thành công.";
                 return View(user);
             }
+            return View();
+            
+            
         }
+        
         public ActionResult DangXuat()
         {
             Session.Clear();
@@ -80,7 +88,7 @@ namespace TGDD.Controllers
         }
         public ActionResult TimKiem(string searchStr)
         {
-            var kqtimkiem = UsersDAO.Instance.TimKiem(searchStr);
+            var kqtimkiem = ProductDAO.Instance.TimKiem(searchStr);
             return View(kqtimkiem);
         }
 

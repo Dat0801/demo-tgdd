@@ -2180,6 +2180,11 @@
     <Content Include="Areas\Admin\Views\Orders\XemOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\ThemOrder.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\SuaOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\TimKiem.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\TimKiem.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\TimKiem.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\TimKiem.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\TimKiem.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\DangNhap.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
