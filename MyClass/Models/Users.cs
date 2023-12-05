@@ -19,6 +19,7 @@ namespace MyClass.Models
          [Required(ErrorMessage = "Phone không được để trống")]
         public string Phone { get; set; }
         public string Email { get; set; }
+         [Required(ErrorMessage = "Địa chỉ không được để trống")]
         public string Address { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }

@@ -50,7 +50,7 @@ namespace TGDD.Controllers
         public ActionResult GioHang()
         {
             if (Session["GioHang"] == null)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("DangNhap", "Home");
             List<GioHang> listGioHang = LayGioHang();
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongThanhTien = TongThanhTien();
@@ -84,7 +84,7 @@ namespace TGDD.Controllers
             }
             else
             {
-                return RedirectToAction("index", "home");
+                return RedirectToAction("DangNhap", "home");
             }
         }
 
@@ -131,7 +131,7 @@ namespace TGDD.Controllers
         }
         public void LuuHoaDon(Orders order)
         {
-            OrdersDAO.Instance.AddOrders(order);
+            OrdersDAO.Instance.AddOrderUser(order);
         }
         public ActionResult LuuHoaDonDetail()
         {

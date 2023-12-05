@@ -59,9 +59,10 @@ namespace TGDD.Controllers
         [HttpPost]
 
 
-        public ActionResult DangKy(string username, string password, string name, string phone, string email, string address, Users user)
+        public ActionResult DangKy(Users user, string province, string district, string ward)
         {
-            if (UsersDAO.Instance.Register(username, password, name, phone, email, address))
+            user.Address += " " + ward  + " " + district + " " + province;
+            if (UsersDAO.Instance.Register(user))
             {
                 ViewBag.SuccessMessage = "Đăng ký thành công!!!!";
                 return View(user);

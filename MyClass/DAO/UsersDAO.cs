@@ -97,7 +97,7 @@ namespace MyClass.DAO
         public int AddUser(Users user)
         {
             string query = "insert into Users(UserName, Password, Name, Phone, Email, Address, Role, Active)" +
-                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', '" + user.Address + "', '" + user.Role + "', '" + user.Active + "')";
+                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', N'" + user.Address + "', '" + user.Role + "', '" + user.Active + "')";
             int rs = DataProvider.Instance.ExecuteNonQuery(query);
             return rs;
         }
@@ -129,21 +129,14 @@ namespace MyClass.DAO
             DataTable result = DataProvider.Instance.ExecuteQuery(query);
             return result.Rows.Count > 0;
         }
-        public bool Register(string username, string password, string name, string phone, string email, string address)
+        public bool Register(Users user)
         {
             try
             {
-                string query = "INSERT INTO Users (UserName, Password, Name, Phone, Email, Address, Role, Active) " +
-                               "VALUES (@UserName, @Password, @Name, @Phone, @Email, @Address, 'User', 1)";
-                SqlCommand cmd = new SqlCommand(query);
-                cmd.Parameters.AddWithValue("@UserName", username);
-                cmd.Parameters.AddWithValue("@Password", password);
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Address", address);
-                int rowsAffected = DataProvider.Instance.ExecuteNonQuery(query);
-                return rowsAffected > 0;
+                string query = "insert into Users(UserName, Password, Name, Phone, Email, Address, Role, Active)" +
+                "values('" + user.UserName + "', '" + user.Password + "', N'" + user.Name + "', '" + user.Phone + "', '" + user.Email + "', N'" + user.Address + "', 'User', '1')";
+                int rs = DataProvider.Instance.ExecuteNonQuery(query);
+                return (rs == 1 ? true : false);
             }
             catch (Exception ex)
             {
@@ -157,20 +150,15 @@ namespace MyClass.DAO
             try
             {
                 List<Product> listPrd = new List<Product>();
-                string query = "SELECT * FROM Product WHERE ProductName LIKE @tensp";
-                SqlCommand cmd = new SqlCommand(query);
-                cmd.Parameters.AddWithValue("@tensp", "%" + searchStr + "%");
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                string query = "SELECT * FROM Product WHERE ProductName LIKE '%" + searchStr + "%'";
+                DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+                foreach (DataRow row in dt.Rows)
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var product = new Product(row);
-                        listPrd.Add(product);
-                    }
+                    var product = new Product(row,1);
+                    listPrd.Add(product);
                 }
                 return listPrd;
+
             }
             catch (Exception ex)
             {

@@ -23,8 +23,9 @@ namespace TGDD.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemUser(Users Users)
+        public ActionResult ThemUser(Users Users, string province, string district, string ward)
         {
+            Users.Address += " " + ward + " " + district + " " + province;
             ViewBag.result = 0;
             if (ModelState.IsValid)
             {

@@ -117,15 +117,6 @@ CREATE TABLE DETAILPRO
 	Constraint FK_DETAILPRO_Product Foreign key (ProductID) references Product(ProductID)
 )
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3cc75450bc231e50d0d96e95e3d724e2313e6a08
-
-
-
-
-
 --delete from DETAILPRO
 --delete from Brand
 --delete from Product

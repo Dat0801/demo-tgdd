@@ -55,6 +55,13 @@ namespace MyClass.DAO
             }
         }
 
+        public int AddOrderUser(Orders Orders)
+        {
+            string queryOrders = "insert into Orders(UserName) values('" + Orders.UserName + "')";
+            int rsOrders = DataProvider.Instance.ExecuteNonQuery(queryOrders);
+            return rsOrders;
+        }
+
         public int AddOrders(Orders Orders)
         {
             string queryOrders = "insert into Orders values('" + Orders.CreatedDate + "', '" + Orders.ShipDate + "', '" + Orders.Status + "', '" + Orders.ShipStatus + "', '" + Orders.UserName + "')";
