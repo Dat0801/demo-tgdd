@@ -138,7 +138,7 @@ namespace MyClass.Models
             this.DetailLap = new DetailLap();
 
             this.DetailLap.ProductID = this.ProductID;
-            this.DetailLap.IDDetail = (int)row["IDDetail"];
+            this.DetailLap.IDDetail = (int)row["IDDetailLap"];
             this.DetailLap.CPU = row["CPU"].ToString();
             this.DetailLap.RAM = row["RAM"].ToString();
             this.DetailLap.OCung = row["OCung"].ToString();
