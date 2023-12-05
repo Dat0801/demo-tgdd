@@ -117,58 +117,27 @@ CREATE TABLE DETAILPRO
 	Constraint FK_DETAILPRO_Product Foreign key (ProductID) references Product(ProductID)
 )
 
---delete from DETAILPRO
---delete from Brand
---delete from Product
---delete from ProductCategory
---delete from OrderDetail
---delete from Orders
---delete from Users
+CREATE TABLE DETAILLAP
+(
+	ProductID INT,
+	IDDetailLap INT identity(1,1),
 
-
---drop table ProductCategory
---drop table OrderDetail
---drop table Orders
---drop table Users
---drop table DETAILPRO
---drop table Brand
---drop table Product
-
-
-INSERT INTO DETAILPRO
-VALUES
---Phone--
-	--Oppo--
-(1,N'AMOLED Chính 6.8" & Phụ 3.26"Full HD+', N'Android 13', N'MediaTek Dimensity 9000+ 8 nhân', N'8 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM', N'Chính 50 MP & Phụ 8 MP', N'32 MP', N'4300 mAh, 44W',N'OPPO', N'Phone'),
-(2,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
-(3,N'AMOLED 6.7"Quad HD+ (2K+)', N'Android 12', N'Snapdragon 8 Gen 1', N'12 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 50 MP & Phụ 50 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
-(4,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
-(5,N'AMOLED 6.7"Full HD+', N'Android 13', N'MediaTek Dimensity 7050 5G 8 nhân', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 64 MP & Phụ 32 MP, 8 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
-	--SamSung--
-(6,N'Super AMOLED 6.5" Full HD+', N'Android 13', N'MediaTek Helio G99', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM ', N'Chính 50 MP & Phụ 5 MP, 2 MP', N'13 MP', N'5000 mAh, 25 W', N'Samsung', N'Phone'),
-(7,N'Dynamic AMOLED 2X6.4" Full HD+', N'Android 12', N'Exynos 2100', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM ', N'Chính 12 MP & Phụ 12 MP, 8 MP', N'32 MP', N'4500 mAh, 25 W', N'Samsung', N'Phone'),
-(8,N'Dynamic AMOLED 2X6.8" Quad HD+ (2K+)', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'512 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 200 MP & Phụ 12 MP, 10 MP, 10 MP', N'12 MP', N'5000 mAh, 45 W', N'Samsung', N'Phone')
-
-
-select* from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID
-
-Select * from Product  where Product.ProductID =2
-
-Select distinct * from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID AND Product.ProductID =2
-
-
-
-Select p.ProductID, p.ProductName,ProductImage,od.Quantity,PromotionPrice,MetaKeywords
-from Product p inner join OrderDetail od on p.ProductID = od.ProductID
-inner join Orders o on od.OrderID = o.OrderID
-where o.UserName = 'user3'
-
-
-
-
-
-
-
+	CPU nvarchar(100),
+	RAM nvarchar(100),
+	OCung nvarchar(300),
+	ManHinh nvarchar(300),
+	CardMH nvarchar(300),
+	CongKetNoi nvarchar(300),
+	DacBiet nvarchar(300),
+	HeDieuHanh nvarchar(300),
+	ThietKe nvarchar(300),
+	KichThuoc_Kl nvarchar(300),
+	ThoiDiemRaMat nvarchar(10),
+	Hang nvarchar(100),
+	Loai nvarchar(100),
+	CONSTRAINT PK_DETAILLAP Primary Key (ProductID, IDDetailLap),
+	Constraint FK_DETAILLAP_Product Foreign key (ProductID) references Product(ProductID)
+)
 
 INSERT INTO ProductCategory(CatName,SeoTitle,CreatedBy,MetaKeywords,MetaDescriptions,Active,CategoryImage)
 VALUES
@@ -327,12 +296,23 @@ VALUES
 (N'Apple Watch Series 9 GPS  45mm ',N'Apple Watch Series 9 GPS  45mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ',4,18,30000000,13890002,N'Apple Watch Series 9 GPS  45mm .jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 (N'Apple Watch Series 9 GPS  41mm ',N'Apple Watch Series 9 GPS  41mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ',4,18,30000000,13890003,N'Apple Watch Series 9 GPS  41mm .jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 (N'Apple Watch SE 2023 GPS + Cellular 44mm ',N'Apple Watch SE 2023 GPS + Cellular 44mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ',4,18,30000000,13890004,N'Apple Watch SE 2023 GPS plus Cellular 44mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Apple Watch Ultra 2 GPS _ Cellular 49mm',N'Apple Watch Ultra 2 GPS _ Cellular 49mm',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,22690000,21990000,N'Apple Watch Ultra 2 GPS _ Cellular 49mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Apple Watch Ultra GPS _ Cellular 49mm ',N'Apple Watch Ultra GPS _ Cellular 49mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,22990000,21990000,N'Apple Watch Ultra GPS _ Cellular 49mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Apple Watch Series 8 GPS 41mm ',N'Apple Watch Series 8 GPS 41mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,11990000,9590000,N'Apple Watch Series 8 GPS 41mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Apple Watch Series 8 GPS 45mm ',N'Apple Watch Series 8 GPS 45mm ',N'• Man hinh OLED 19 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,12990000,10990000,N'Apple Watch Series 8 GPS 45mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+	--SamSung--
+(N'Samsung Galaxy Watch5 Pro 45mm',N'Samsung Galaxy Watch5 Pro 45mm',N'• Man hinh SUPER AMOLED, 1.4 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,12690000,11990000,N'Samsung Galaxy Watch5 Pro 45mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Samsung Galaxy Watch6 Classic LTE 47mm',N'Samsung Galaxy Watch6 Classic LTE 47mm',N'• Man hinh SUPER AMOLED, 1.4 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,11790000,9990000,N'Samsung Galaxy Watch6 Classic LTE 47mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Samsung Galaxy Watch6 Classic 47mm ',N'Samsung Galaxy Watch6 Classic 47mm ',N'• Man hinh SUPER AMOLED, 1.4 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,10990000,9490000,N'Samsung Galaxy Watch6 Classic 47mm .jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Samsung Galaxy Watch6 LTE 44mm ',N'Samsung Galaxy Watch6 LTE 44mm ',N'• Man hinh SUPER AMOLED, 1.4 inch • Theo dõi sức khỏe. Theo dõi mức độ stress. Tính quãng đường chạy. Điện tâm đồ       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,9700000,7990000,N'Samsung Galaxy Watch6 LTE 44mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--Xiaomi--
 (N'Xiaomi Mi Band 8 dây TPU',N'Xiaomi Mi Band 8 dây TPU',N'Màn hình: TFT, 1.47 inch      Theo dõi sức khỏe: Theo dõi mức độ stress, Tính quãng đường chạy, Đếm số bước chân       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',4,19,30000000,5999000,N'Xiaomi Mi Band 8 dây TPU.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 (N'Xiaomi Watch 2 Pro 46 mm dây silicone',N'Xiaomi Watch 2 Pro 46 mm dây silicone',N'Màn hình: TFT, 1.47 inch      Theo dõi sức khỏe: Theo dõi mức độ stress, Tính quãng đường chạy, Đếm số bước chân       Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',4,19,30000000,5999001,N'Xiaomi Watch 2 Pro 46 mm dây silicone.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--BeFit--
 (N'BeFit Watch Ultra S 52.1mm dây silicone',N'BeFit Watch Ultra S 52.1mm dây silicone',N'Màn hình: AMOLED, 1.95 inch     Theo dõi sức khỏe: Đo nồng độ oxy (SpO2), Đo nhịp tim, Đo huyết áp  Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',4,20,30000000,840999,N'BeFit Watch Ultra S 52.1mm dây silicone.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 (N'BeFit Watch Ultra 52.6mm dây silicone',N'BeFit Watch Ultra 52.6mm dây silicone',N'Màn hình: AMOLED, 1.95 inch     Theo dõi sức khỏe: Đo nồng độ oxy (SpO2), Đo nhịp tim, Đo huyết áp  Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',4,20,30000000,840999,N'BeFit Watch Ultra 52.6mm dây silicone.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'BeFit WatchS 45mm dây silicone',N'BeFit WatchS 45mm dây silicone',N'Màn hình: AMOLED, 1.95 inch     Theo dõi sức khỏe: Đo nồng độ oxy (SpO2), Đo nhịp tim, Đo huyết áp  Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,1490000,1090000,N'BeFit WatchS 45mm dây silicone.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'BeFit Sporty 2 44.5mm ',N'BeFit Sporty 2 44.5mm ',N'Màn hình: AMOLED, 1.95 inch     Theo dõi sức khỏe: Đo nồng độ oxy (SpO2), Đo nhịp tim, Đo huyết áp  Thông báo ứng dụng: Tin nhắn, Cuộc gọi, Messenger (Facebook)',3,15,1690000,690000,N'BeFit Sporty 2 44.5mm.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--imoo--
 (N'imoo Z1 41mm dây TPU Hồng nhạt',N'imoo Z1 41mm dây TPU Hồng nhạt',N'Màn hình: TFT-LCD, 1.3 inch      Theo dõi sức khỏe: Đếm số bước chân',4,21,30000000,2720000,N'imoo Z1 41mm dây TPU Hồng nhạt.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 (N'imoo Z1 41mm dây TPU Xanh dương',N'imoo Z1 41mm dây TPU Xanh dương',N'Màn hình: TFT-LCD, 1.3 inch      Theo dõi sức khỏe: Đếm số bước chân',4,21,30000000,2720001,N'imoo Z1 41mm dây TPU Xanh dương.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
@@ -342,12 +322,21 @@ VALUES
 (N'Asus S500SD i5 12400 (512400050W)',N'Asus S500SD i5 12400 (512400050W)',N'RAM 8GB   SSD 512GB',5,22,30000000,15590000,N'Asus S500SD i5 12400 (512400050W).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'Asus ExpertCenter AIO A3202WBAK i3 1215U 21.45 inch (WA018W)',N'Asus ExpertCenter AIO A3202WBAK i3 1215U 21.45 inch (WA018W)',N'RAM 8GB   SSD 512GB',5,22,30000000,17590001,N'Asus ExpertCenter AIO A3202WBAK i3 1215U 21.45 inch (WA018W).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'Asus ExpertCenter AIO A5402WVAK i5 1340P 23.8 inch (BA016W)',N'Asus ExpertCenter AIO A5402WVAK i5 1340P 23.8 inch (BA016W)',N'RAM 8GB   SSD 512GB',5,22,30000000,17590000,N'Asus ExpertCenter AIO A5402WVAK i5 1340P 23.8 inch (BA016W).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
+(N'ASUS AIO A3402WBAK i3',N'ASUS AIO A3402WBAK i3',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,18590000,14090000,N'ASUS AIO A3402WBAK i3.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Màn hình Asus VZ24EHE-R 23.8 inch',N'Màn hình Asus VZ24EHE-R 23.8 inch',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,2750000,2390000,N'Màn hình Asus VZ24EHE-R 23.8 inch.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Màn hình Asus TUF Gaming VG249Q1A 23.8 inch FHD',N'Màn hình Asus TUF Gaming VG249Q1A 23.8 inch FHD',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,4190000,3290000,N'Màn hình Asus TUF Gaming VG249Q1A 23.8 inch FHD.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Màn hình Asus Gaming ROG Strix XG249CM 23.8 inch',N'Màn hình Asus Gaming ROG Strix XG249CM 23.8 inch',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,7990000,7490000,N'Màn hình Asus Gaming ROG Strix XG249CM 23.8 inch.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N' Asus VG249Q3A 23.8 inch FHD IPS',N' Asus VG249Q3A 23.8 inch FHD IPS',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,3990000,3790000,N' Asus VG249Q3A 23.8 inch FHD IPS.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N' Asus ProArt PA278CV 27 inch 2K IPS',N' Asus ProArt PA278CV 27 inch 2K IPS',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,10190000,9490000,N' Asus ProArt PA278CV 27 inch 2K IPS.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Màn hình Asus ProArt PA248QV 24.1 inch FHD',N'Màn hình Asus ProArt PA248QV 24.1 inch FHD',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,5590000,5090000,N'Màn hình Asus ProArt PA248QV 24.1 inch FHD.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--HP--
 (N'HP AIO ProOne 240 G9 i3 1215U 23.8 inch (6M3T0PA)',N'HP AIO ProOne 240 G9 i3 1215U 23.8 inch (6M3T0PA)',N'RAM 8GB   SSD 512GB',5,23,30000000,14790000,N'HP AIO ProOne 240 G9 i3 1215U 23.8 inch (6M3T0PA).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'HP Slim Desktop S01 pF2025d i5 12400 (6K7A3PA)',N'HP Slim Desktop S01 pF2025d i5 12400 (6K7A3PA)',N'RAM 8GB   SSD 512GB',5,23,30000000,18190000,N'HP Slim Desktop S01 pF2025d i5 12400 (6K7A3PA).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'HP AIO 22 dd2002d i5 1235U 21.5 inch (6K7G1PA)',N'HP AIO 22 dd2002d i5 1235U 21.5 inch (6K7G1PA)',N'RAM 8GB   SSD 512GB',5,23,30000000,21990000,N'HP AIO 22 dd2002d i5 1235U 21.5 inch (6K7G1PA).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'HP AIO ProOne 240 G9 i5 1235U 23.8 inch (6M3V2PA)',N'HP AIO ProOne 240 G9 i5 1235U 23.8 inch (6M3V2PA)',N'RAM 8GB   SSD 512GB',5,23,30000000,11190000,N'HP AIO ProOne 240 G9 i5 1235U 23.8 inch (6M3V2PA).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 (N'HP ProOne 440 G9 AIO i5 12500T 23.8 inch (6M3X9PA)',N'HP ProOne 440 G9 AIO i5 12500T 23.8 inch (6M3X9PA)',N'RAM 8GB   SSD 512GB',5,23,30000000,11190001,N'HP ProOne 440 G9 AIO i5 12500T 23.8 inch (6M3X9PA).jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
+(N'HP ProOne 440 G9 AIO i5',N'HP ProOne 440 G9 AIO i5',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,22990000,21490000,N'HP ProOne 440 G9 AIO i5.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'HP AIO 22 dd2002d i5',N'HP AIO 22 dd2002d i5',N'8 GB, 512 GB SSD, Intel UHD, Windows 11',3,15,20590000,19090000,N'HP AIO 22 dd2002d i5.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--Mac--
 (N'iMac 24 inch 2023 4.5K/8-core GPU',N'iMac 24 inch 2023 4.5K/8-core GPU',N'RAM 8GB   SSD 512GB',5,24,30000000,41190000,N'iMac 24 inch 2023 4.5K-8-core GPU.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'PC',N' ',1),
 --Phụ Kiện--
@@ -355,11 +344,135 @@ VALUES
 (N' AVA+ 15W JP399',N' AVA+ 15W JP399',N' Chip E-marker Smart   1m',6,25,30000000,100001,N'AVAplus 15W JP399.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
 (N'Tai nghe Bluetooth True Wireless AVA+ FreeGo A20',N'Tai nghe Bluetooth True Wireless AVA+ FreeGo A20',N' Chip E-marker Smart   1m',6,25,30000000,100001,N'Tai nghe Bluetooth True Wireless AVAplus FreeGo A20.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
 (N'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',N'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',N' Chip E-marker Smart   1m',6,25,30000000,100001,N'Tai nghe Bluetooth True Wireless AVAplus Buds Life Air 2.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
+
+(N'Cáp Type C 2m AVA+ DS08C',N'Cáp Type C 2m AVA+ DS08C',N' Chip E-marker Smart   1m',3,15,150000,120000,N'Cáp Type C 2m AVA+ DS08C.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'AVA_ 15W DS2107',N'AVA_ 15W DS2107',N' Chip E-marker Smart   1m',3,15,500000,350000,N'AVA_ 15W DS2107.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+
 	--Baseus--
 (N'Baseus Comet 22.5W PPMD10 kèm Cáp Lightning và Type C',N'Baseus Comet 22.5W PPMD10 kèm Cáp Lightning và Type C',N' Chip E-marker Smart   1m',6,26,30000000,100001,N'Baseus Comet 22.5W PPMD10 kèm Cáp Lightning và Type C.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
 (N'Cáp Lightning 1m Baseus CoolPlay CB000044',N'Cáp Lightning 1m Baseus CoolPlay CB000044',N' Chip E-marker Smart   1m',6,26,30000000,100001,N'Cáp Lightning 1m Baseus CoolPlay CB000044.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
+
+(N'Baseus ioTa 220V_140W BPE14A',N'Baseus ioTa 220V_140W BPE14A',N' Chip E-marker Smart   1m',3,15,7990000,3995000,N'Baseus ioTa 220V_140W BPE14A.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Baseus 20W PPCXM06',N'Baseus 20W PPCXM06',N' Chip E-marker Smart   1m',3,15,1000000,800000,N'Baseus 20W PPCXM06.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Baseus 20W PPCXZ10',N'Baseus 20W PPCXZ10',N' Chip E-marker Smart   1m',3,15,1390000,1110000,N'Baseus 20W PPCXZ10.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
 	--Xmobile--
 (N'Xmobile 20W DS611',N'Xmobile 20W DS611',N' Chip E-marker Smart   1m',6,27,30000000,100001,N'Xmobile 20W DS611.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
-(N'Cáp Lightning 1m Xmobile DR-L001X',N'Cáp Lightning 1m Xmobile DR-L001X',N' Chip E-marker Smart   1m',6,27,30000000,100001,N'Cáp Lightning 1m Xmobile DR-L001X.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1)
+(N'Xmobile 22.5W S2032 ',N'Xmobile 22.5W S2032 ',N' Chip E-marker Smart   1m',3,15,1000000,990000,N'Xmobile 22.5W S2032.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Cáp Lightning 1m Xmobile DR-L001X',N'Cáp Lightning 1m Xmobile DR-L001X',N' Chip E-marker Smart   1m',6,27,30000000,100001,N'Cáp Lightning 1m Xmobile DR-L001X.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'Phụ Kiện',N' ',1),
+	-------	
+(N'Anker 30W A1256',N'Anker 30W A1256',N' Chip E-marker Smart   1m',3,15,1180000,1120000,N'Anker 30W A1256.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge (USB-C) Apple MTJV3',N'Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge (USB-C) Apple MTJV3',N' Chip E-marker Smart   1m',3,15,6200000,5990000,N'Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge (USB-C) Apple MTJV3.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Tai nghe Bluetooth Chụp Tai Zadez GP-803B',N'Tai nghe Bluetooth Chụp Tai Zadez GP-803B',N' Chip E-marker Smart   1m',3,15,850000,590000,N'Tai nghe Bluetooth Chụp Tai Zadez GP-803B.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1),
+(N'Tai nghe Bluetooth Chụp Tai JBL Tune 520BT',N'Tai nghe Bluetooth Chụp Tai JBL Tune 520BT',N' Chip E-marker Smart   1m',3,15,2890000,1390000,N'Tai nghe Bluetooth Chụp Tai JBL Tune 520BT.jpg',1,12,'02/07/2022','admin1','02/07/2022',null,N'SmartWatch',N' ',1)
+	
 	select* from Product
 --delete from Product
+
+
+
+
+INSERT INTO DETAILPRO
+VALUES
+--Phone--
+	--Oppo--
+(1,N'AMOLED Chính 6.8" & Phụ 3.26"Full HD+', N'Android 13', N'MediaTek Dimensity 9000+ 8 nhân', N'8 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM', N'Chính 50 MP & Phụ 8 MP', N'32 MP', N'4300 mAh, 44W',N'OPPO', N'Phone'),
+(2,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
+(3,N'AMOLED 6.7"Quad HD+ (2K+)', N'Android 12', N'Snapdragon 8 Gen 1', N'12 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 50 MP & Phụ 50 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
+(4,N'AMOLED 6.7"Full HD+', N'Android 13', N'Snapdragon 695 5G', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 108 MP & Phụ 2 MP', N'32 MP', N'4800 mAh, 67 W', N'OPPO', N'Phone'),
+(5,N'AMOLED 6.7"Full HD+', N'Android 13', N'MediaTek Dimensity 7050 5G 8 nhân', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 64 MP & Phụ 32 MP, 8 MP', N'32 MP', N'5000 mAh, 80 W', N'OPPO', N'Phone'),
+	--SamSung--
+(6,N'Super AMOLED 6.5" Full HD+', N'Android 13', N'MediaTek Helio G99', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM ', N'Chính 50 MP & Phụ 5 MP, 2 MP', N'13 MP', N'5000 mAh, 25 W', N'Samsung', N'Phone'),
+(7,N'Dynamic AMOLED 2X6.4" Full HD+', N'Android 12', N'Exynos 2100', N'8 GB', N'128 GB', N'Hỗ trợ 5G', N'2 Nano SIM ', N'Chính 12 MP & Phụ 12 MP, 8 MP', N'32 MP', N'4500 mAh, 25 W', N'Samsung', N'Phone'),
+(8,N'Dynamic AMOLED 2X6.8" Quad HD+ (2K+)', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'512 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 200 MP & Phụ 12 MP, 10 MP, 10 MP', N'12 MP', N'5000 mAh, 45 W', N'Samsung', N'Phone'),
+(9,N'Super AMOLED6.6" Full HD+', N'Android 13', N'MediaTek Dimensity 1080 8 nhân', N'8 GB', N'128G', N'Hỗ trợ 5G', N'2 Nano SIM', N'Chính 48 MP & Phụ 8 MP, 5 MP', N'13 MP', N'5000 mAh, 25 W', N'Samsung',N'Phone'),
+(10,N'Chính: Dynamic AMOLED 2X, Phụ: Super AMOLEDChính 6.7" & Phụ 3.4"Full HD+', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'8 GB', N'512 GB', N'Hỗ trợ 5G', N'1 Nano SIM & 1 eSIM', N'2 camera 12 MP', N'5 MP', N'3700 mAh, 25 W', N'Samsung',N'Phone'),
+(11,N'IPS LCD6.5"HD+', N'Android 12', N'Exynos 850', N'4 GB', N'64 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 50 MP & Phụ 2 MP, 2 MP', N'11 MP', N'5000 mAh, 15 W', N'Samsung',N'Phone'),
+	--iphone--	
+(12,N'Dynamic AMOLED 2XChính 7.6" & Phụ 6.2"Quad HD+ (2K+)', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'256 GB', N'Hỗ trợ 5G', N'2 Nano SIM hoặc 1 Nano SIM + 1 eSIM', N'Chính 50 MP & Phụ 12 MP, 10 MP', N'10 MP & 4 MP', N'4400 mAh, 25 W', N'Samsung',N'Phone'),
+(13,N'OLED 6.1" Super Retina XDR', N'iOS 16', N'Apple A15 Bionic', N'6 GB', N'128 GB', N'Hỗ trợ 5G', N'1 Nano SIM & 1 eSIM', N'2 camera 12 MP', N'12 MP', N'3279 mAh, 20 W', N'iPhone (Apple)',N'Phone'),
+(14,N'IPS LCD 6.1" Liquid Retina', N'iOS 15', N'Apple A13 Bionic', N'4 GB', N'128 GB', N'Hỗ trợ 4G', N'1 Nano SIM & 1 eSIM', N'2 camera 12 MP', N'12 MP', N'3110 mAh, 18 W', N'iPhone (Apple)',N'Phone'),
+(15,N'OLED 6.7" Super Retina XDR', N'iOS 16', N'Apple A16 Bionic', N'6 GB', N'128 GB', N'Hỗ trợ 5G', N'1 Nano SIM & 1 eSIM', N'Chính 48 MP & Phụ 12 MP, 12 MP', N'12 MP', N'4323 mAh, 20 W', N'iPhone (Apple)',N'Phone'),
+	--Xiaomi--
+(16,N'IPS LCD 6.79" Full HD+', N'Android 13', N'MediaTek Helio G88', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM (SIM 2 chung khe thẻ nhớ)', N'Chính 50 MP & Phụ 8 MP, 2 MP', N'8 MP', N'5000 mAh, 18 W', N'Xiaomi',N'Phone'),
+(17,N'IPS LCD 6.71" Full HD+', N'Android 12', N'MediaTek Helio G85', N'4 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 50 MP & Phụ QVGA', N'5 MP', N'5000 mAh, 10 W', N'Xiaomi',N'Phone'),
+(18,N'IPS LCD 6.52" Full HD+', N'Android 12 (Go Edition)', N'MediaTek MT6761 (Helio A22)', N'2 GB', N'32 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 8 MP & Phụ QVGA', N'5 MP', N'5000 mAh, 10 W', N'Xiaomi',N'Phone'),
+(19,N'AMOLED 6.67" Full HD+', N'Android 13', N'Snapdragon 685 8 nhân', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 50 MP & Phụ 8 MP, 2 MP', N'13 MP', N'5000 mAh, 33 W', N'Xiaomi',N'Phone'),
+	--vivo--
+(20,N'IPS LCD 6.64" Full HD+', N'Android 13', N'Snapdragon 680', N'8 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 50 MP & Phụ 2 MP', N'16 MP', N'5000 mAh, 44 W', N'vivo',N'Phone'),
+(21,N'IPS LCD 6.51" HD+', N'Android 13 (Go Edition)', N'MediaTek Helio P35', N'4 GB', N'64 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'8 MB', N'5 MB', N'5000 mAh, 10 W', N'vivo',N'Phone'),
+(22,N'IPS LCD 6.51" HD+', N'Android 12', N'MediaTek Helio P35', N'4 GB', N'128 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 13 MP & Phụ 2 MP', N'5 MB', N'5000 mAh, 10 W', N'vivo',N'Phone'),
+(23,N'IPS LCD 6.51" HD+', N'Android 12', N'MediaTek Helio P35', N'3 GB', N'64 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'8 MB', N'5 MB', N'5000 mAh, 10 W', N'vivo',N'Phone'),
+(24,N'IPS LCD 6.51" HD+', N'Android 12 (Go Edition)', N'MediaTek Helio P35', N'3 GB', N'32 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'8 MB', N'5 MB', N'5000 mAh, 10 W', N'vivo',N'Phone'),
+	--realme--
+(25,N'IPS LCD 6.72" Full HD+', N'Android 13', N'MediaTek Helio G88', N'8 GB', N'256 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 64 MP & Phụ 2 MP', N'8 MP', N'5000 mAh, 33 W', N'realme',N'Phone'),
+(26,N'IPS LCD 6.72" Full HD+', N'Android 13', N'MediaTek Helio G88', N'8 GB', N'256 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 64 MP & Phụ 2 MP', N'8 MP', N'5000 mAh, 33 W', N'realme',N'Phone'),
+(27,N'Super AMOLED6.4"Full HD+', N'Android 12', N'MediaTek Helio G99', N'8 GB', N'256 GB', N'Hỗ trợ 4G', N'2 Nano SIM', N'Chính 50 MP & Phụ 2 MP', N'16 MP', N'5000 mAh, 33 W', N'realme',N'Phone'),
+--Tablet--
+	--ipad--
+(28,N'10.2" Retina IPS LCD', N'iPadOS 15', N'Apple A13 Bionic', N'3 GB', N'256 GB', N'Nghe gọi qua FaceTime', N'                  ', N'8 MP', N'12 MP', N'32.4 Wh (~ 8600 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(29,N'10.9" Retina IPS LCD', N'iPadOS 15', N'Apple M1', N'8 GB', N'64 GB', N'Nghe gọi qua FaceTime', N'                  ', N'12 MP', N'12 MP', N'28.6 Wh (~ 7587 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(30,N'10.9" Retina IPS LCD', N'iPadOS 16', N'Apple A14 Bionic', N'4 GB', N'64 GB', N'Nghe gọi qua FaceTime', N'                  ', N'12 MP', N'12 MP', N'28.6 Wh (~ 7587 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(31,N'12.9" Liquid Retina XDR', N'iPadOS 15', N'Apple M1', N'16 GB', N'2 TB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'Chính 12 MP & Phụ 10 MP, TOF 3D LiDAR', N'12 MP', N'40.88 Wh (~ 10.835 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(32,N'8.3" LED-backlit IPS LCD', N'iPadOS 15', N'Apple A15 Bionic', N'4 GB', N'256 GB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'12 MP', N'12 MP', N'19.3 Wh (~ 5175 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(33,N'12.9" Liquid Retina XDR', N'iPadOS 15', N'Apple M1', N'16 GB', N'2 TB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'Chính 12 MP & Phụ 10 MP, TOF 3D LiDAR', N'12 MP', N'40.88 Wh (~ 10.835 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(34,N'11" Liquid Retina', N'iPadOS 16', N'Apple M2 8 nhân', N'8 GB', N'128 GB', N'Nghe gọi qua FaceTime', N'                  ', N'Chính 12 MP & Phụ 10 MP, TOF 3D LiDAR', N'12 MP', N'28.6 Wh (~ 7587 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(35,N'10.9" Retina IPS LCD', N'iPadOS 15', N'Apple M1', N'8 GB', N'256 GB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'12 MP', N'12 MP', N'28.6 Wh (~ 7587 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(36,N'8.3" LED-backlit IPS LCD', N'iPadOS 15', N'Apple A15 Bionic', N'4 GB', N'64 GB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'12 MP', N'12 MP', N'19.3 Wh (~ 5175 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+(37,N'12.9"Liquid Retina XDR', N'iPadOS 15', N'Apple M1', N'8 GB', N'128 GB', N'5G, Nghe gọi qua FaceTime', N'1 Nano SIM hoặc 1 eSIM', N'Chính 12 MP & Phụ 10 MP, TOF 3D LiDAR', N'12 MP', N'40.88 Wh (~ 10.835 mAh), 20 W', N'iPad (Apple).',N'Phone'),
+	--samsung--
+(38,N'14.6" Dynamic AMOLED 2X', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'16 GB', N'1 TB', N'5G, Có nghe gọi', N'1 Nano SIM & 1 eSIM', N'Chính 13 MP & Phụ 8 MP', N'2 Camera 12 MP', N'11200 mAh45 W', N'Samsung',N'Phone'),
+(39,N'12.4" Dynamic AMOLED 2X', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'512 GB', N'5G, Có nghe gọi', N'1 Nano SIM & 1 eSIM', N'Chính 13 MP & Phụ 8 MP', N'12 MP', N'10090 mAh, 45 W', N'Samsung',N'Phone'),
+(40,N'10.5" TFT LCD', N'Android 11', N'UniSOC T618', N'4 GB', N'64 GB', N'Hỗ trợ 4G, Có nghe gọi', N'1 Nano SIM', N'8 MP', N'5 MP', N'7040 mAh, 15 W', N'Samsung',N'Phone'),
+(41,N'8.7" TFT LCD', N'Android 11', N'MediaTek MT8768T', N'3 GB', N'32 GB', N'Hỗ trợ 4G, Có nghe gọi', N'1 Nano SIM', N'8 MP', N'5 MP', N'5100 mAh, 15 W', N'Samsung',N'Phone'),
+(42,N'12.4" Dynamic AMOLED 2X', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'512 GB', N'               ', N'                 ', N'Chính 13 MP & Phụ 8 MP', N'12 MP', N'10090 mAh, 45 W', N'Samsung',N'Phone'),
+(43,N'11" Dynamic AMOLED 2X', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'256 GB', N'5G, Có nghe gọi', N'1 Nano SIM & 1 eSIM', N'13 MP', N'12 MP', N'8400 mAh, 45 W', N'Samsung',N'Phone'),
+(44,N'12.4"TFT LCD', N'Android 11', N'Snapdragon 750G', N'4 GB', N'64 GB', N'Hỗ trợ 4G, Có nghe gọi', N'1 Nano SIM', N'8 MP', N'5 MP', N'10090 mAh, 45 W', N'Samsung',N'Phone'),
+(45,N'11" Dynamic AMOLED 2X', N'Android 13', N'Snapdragon 8 Gen 2 for Galaxy', N'12 GB', N'256 GB', N'               ', N'                 ', N'13 MP', N'12 MP', N'8400 mAh, 45 W', N'Samsung',N'Phone'),
+	--lenovo--
+(46,N'8" IPS LCD', N'Android 12 (Go Edition)', N'MediaTek Helio A22', N'3 GB', N'32 GB', N'Hỗ trợ 4G, Có nghe gọi', N'1 Nano SIM', N'5 MP', N'2 MP', N'5100 mAh, 15 W', N'Lenovo',N'Phone'),
+(47,N'9" IPS LCD', N'Android 12', N'MediaTek Helio G80', N'4 GB', N'64 GB', N'Hỗ trợ 4G, Có nghe gọi', N'1 Nano SIM', N'8 MP', N'2 MP', N'5100 mAh, 10W', N'Lenovo',N'Phone')
+	select* from DETAILPRO
+--delete from DETAILPRO
+
+
+
+
+INSERT INTO DETAILLAP(ProductID, CPU ,	RAM ,	OCung ,	ManHinh,	CardMH ,CongKetNoi,DacBiet,	HeDieuHanh , ThietKe,	KichThuoc_Kl ,ThoiDiemRaMat,Hang,Loai )
+VALUES
+(48,N'Apple M1',N'16 GB',N'512 GB SSD',N'13.3" Retina (2560 x 1600)',N'Card tích hợp, 7 nhân GPU',N'2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm',N'Có đèn bàn phím',N'macOS',N'Vỏ kim loại nguyên khối',N'Dài 304.1 mm - Rộng 212.4 mm - Dày 4.1 đến 16.1 mm - Nặng 1.29 kg',N'2020',N'MacBook',N'Laptop'),
+(49,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'13.6" Liquid Retina (2560 x 1664)', N'Card tích hợp, 8 nhân GPU', N'2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 304.1 mm - Rộng 212.4 mm - Dày 4.1 đến 16.1 mm - Nặng 1.29 kg', N'2020',N'MacBook',N'Laptop'),
+(50,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'13.3" Retina (2560 x 1600)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 304.1 mm - Rộng 212.4 mm - Dày 4.1 đến 16.1 mm - Nặng 1.29 kg', N'2020',N'MacBook',N'Laptop'),
+(51,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'15.3" Liquid Retina (2560 x 1664)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3 / USB 4 (lên đến 40 Gb/s), Jack tai nghe 3.5 mmMagSafe 3', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 340.4 mm - Rộng 237.6 mm - Dày 11.5 mm - Nặng 1.51 kg', N'2020',N'MacBook',N'Laptop'),
+(52,N'Apple M2, 100GB/s', N'16 GB', N'512 GB SSD', N'13.6" Liquid Retina (2560 x 1664)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3, Jack tai nghe 3.5 mm, MagSafe 3', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 304.1 mm - Rộng 215 mm - Dày 11.3 mm - Nặng 1.24 kg', N'2020',N'MacBook',N'Laptop'),
+(53,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'13.3" Retina (2560 x 1600)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 304.1 mm - Rộng 212.4 mm - Dày 15.6 mm - Nặng 1.4 kg', N'2022',N'MacBook',N'Laptop'),
+(54,N'Apple M2 Pro, 200GB/s', N'16 GB', N'512 GB SSD', N'16.2" Liquid Retina XDR display (3456 x 2234), 120Hz', N'Card tích hợp, 19 nhân GPU', N'2 x Thunderbolt 3, Jack tai nghe 3.5 mm, MagSafe 3', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 355.7 mm - Rộng 248.1 mm - Dày 16.8 mm - Nặng 2.15 kg', N'2022',N'MacBook',N'Laptop'),
+(55,N'Apple M2 Pro, 200GB/s', N'16 GB', N'512 GB SSD', N'16.2" Liquid Retina XDR display (3456 x 2234), 120Hz', N'Card tích hợp, 19 nhân GPU', N'2 x Thunderbolt 3, Jack tai nghe 3.5 mm, MagSafe 3', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 355.7 mm - Rộng 248.1 mm - Dày 16.8 mm - Nặng 2.15 kg', N'2023',N'MacBook',N'Laptop'),
+(56,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'13.3" Retina (2560 x 1600)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 304.1 mm - Rộng 212.4 mm - Dày 15.6 mm - Nặng 1.4 kg', N'2022',N'MacBook',N'Laptop'),
+(57,N'Apple M2, 100GB/s', N'8 GB', N'256 GB SSD', N'15.3" Liquid Retina (2560 x 1664)', N'Card tích hợp, 10 nhân GPU', N'2 x Thunderbolt 3 / USB 4 (lên đến 40 Gb/s), Jack tai nghe 3.5 mmMagSafe 3', N'Có đèn bàn phím', N'macOS', N'Vỏ kim loại nguyên khối', N'Dài 340.4 mm - Rộng 237.6 mm - Dày 11.5 mm - Nặng 1.51 kg', N'2023',N'MacBook',N'Laptop'),
+
+(58,N'i5, 12450H, 2GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, GTX 1650 4GB', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 362.3 mm - Rộng 237.4 mm - Dày 19.9 mm - Nặng 2.1 kg', N'2023',N'Acer',N'Laptop'),
+(59,N'i5, 12450H, 2GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB),512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB),Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, RTX 3050 4GB', N'HDMI, LAN (RJ45), 3 x USB 3.2, Thunderbolt 4 USB-C, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 360.4 mm - Rộng 271.09 mm - Dày 25.9 mm - Nặng 2.5 kg', N'2022',N'Acer',N'Laptop'),
+(60,N'i3 chuỗi N, N305', N'8 GB, LPDDR5 (Onboard), 4800 MHz', N'256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card tích hợp, Intel UHD', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'       ', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 362.9 mm - Rộng 237.5 mm - Dày 18.9 mm - Nặng 1.7 kg', N'2023',N'Acer',N'Laptop'),
+(61,N'i5, 11400H, 2.7GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB),512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB),Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, GTX 1650 4GB', N'HDMI, LAN (RJ45), 3 x USB 3.2, Thunderbolt 4 USB-C, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 363.4 mm - Rộng 255 mm - Dày 23.9 mm - Nặng 2.2 kg', N'2021',N'Acer',N'Laptop'),
+
+(62,N'i5, 11400H, 2.7GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB),512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB),Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, RTX 2050 4GB', N'1 x Thunderbolt 4 (hỗ trợ DisplayPort), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 359 mm - Rộng 256 mm - Dày 22.8 ~ 24.5 mm - Nặng 2.3 kg', N'2023',N'Asus',N'Laptop'),
+(63,N'i3, 1115G4, 3GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card tích hợp, Intel UHD', N'HDMI, 2 x USB 2.0, USB Type-C1 x USB 3.2, Jack tai nghe 3.5 mm', N'                        ', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 360 mm - Rộng 235 mm - Dày 19.9 mm - Nặng 1.8 kg', N'2022',N'Asus',N'Laptop'),
+(64,N'i5, 11400H, 2.7GHz', N'16 GB, DDR4 2 khe (1 khe 8 GB + 1 khe 8 GB), 3200 MHz', N'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB),512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB),Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, RTX 3050 4GB', N'1 x Thunderbolt 4 (hỗ trợ DisplayPort), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 359 mm - Rộng 256 mm - Dày 22.8 ~ 24.5 mm - Nặng 2.3 kg', N'2022',N'Asus',N'Laptop'),
+
+(65,N'i5, 11400H, 2.7GHz', N'8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, GTX 1650 Max-Q 4GB', N'HDMI, LAN (RJ45), 3 x USB 3.2, Thunderbolt 4 USB-C, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ kim loại ', N'Dài 359 mm - Rộng 254 mm - Dày 21.7 mm - Nặng 1.86 kg', N'2022',N'MSI',N'Laptop'),
+(66,N'i3, 1115G4, 3GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'14" Full HD (1920 x 1080)', N'Card tích hợp, Intel UHD', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 319.9 mm - Rộng 223 mm - Dày 19.35 mm - Nặng 1.4 kg', N'2022',N'MSI',N'Laptop'),
+(67,N'i5, 11400H, 2.7GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rờiRTX 4050 6GB', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Nắp lưng và chiếu nghỉ tay bằng kim loại', N'Dài 359 mm - Rộng 254 mm - Dày 21.7 mm - Nặng 1.86 kg', N'2023',N'MSI',N'Laptop'),
+
+(68,N'i5, 1240P, 1.7GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card tích hợpIntel Iris Xe', N'HDMI, 2 x USB 2.0, USB Type-C1 x USB 3.2, Jack tai nghe 3.5 mm', N'        ', N'Windows 11 Home SL', N'Vỏ nhựa - chiếu nghỉ tay bằng kim loại', N'Dài 360.2 mm - Rộng 234 mm - Dày 17.9 mm - Nặng 1.72 kg', N'2022',N'HP',N'Laptop'),
+(69,N'i5, 12450H, 2GHz', N'16 GB, DDR4 2 khe (1 khe 8 GB + 1 khe 8 GB), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, RTX 3050 4GB', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa', N'Dài 357.9 mm - Rộng 255 mm - Dày 23.5 mm - Nặng 2.31 kg', N'2023',N'HP',N'Laptop'),
+(70,N'i3, 1115G4, 3GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', N'14" Full HD (1920 x 1080)', N'Card tích hợp, Intel UHD', N'HDMI, LAN (RJ45), 3 x USB 3.2, Thunderbolt 4 USB-C, Jack tai nghe 3.5 mm', N'            ', N'Windows 11 Home SL', N'Vỏ nhựa', N'Dài 324 mm - Rộng 225.9 mm - Dày 19.9 mm - Nặng 1.47 kg', N'2022',N'HP',N'Laptop'),
+
+(71,N'i5, 12500H, 2.5GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 165Hz', N'Card rời, RTX 3050Ti 4GB', N'1 x Thunderbolt 4 (hỗ trợ DisplayPort), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa - nắp lưng bằng kim loại', N'Dài 358.8 mm - Rộng 262.35 mm - Dày 19.99 mm - Nặng 2.35 kg', N'2022',N'Lenovo',N'Laptop'),
+(72,N'i3, 1115G4, 3GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', N'14" Full HD (1920 x 1080)', N'Card tích hợp, Intel UHD', N'1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4), HDMILAN (RJ45), 3 x USB 3.2, Jack tai nghe 3.5 mm', N'               ', N'Windows 11 Home SL', N'Vỏ nhựa', N'Dài 359.2 mm - Rộng 236.5 mm - Dày 19.9 mm - Nặng 1.65 kg', N'2023',N'Lenovo',N'Laptop'),
+
+(73,N'i5, 12500H, 2.5GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', N'15.6" Full HD (1920 x 1080) 144Hz', N'Card rời, RTX 3050 4GB', N'1 x 2-in-1 Audio Jack (Headphone / Microphone), 2 x USB Type-C 3.2 Gen 21 x Microphone jack, HDMI, LAN (RJ45), Mini DisplayPort, 1 x USB 2.0, 1 x USB 3.2', N'Có đèn bàn phím', N'Windows 11 Home SL', N'Vỏ nhựa', N'Dài 360 mm - Rộng 238 mm - Dày 22.7 mm - Nặng 1.9 kg', N'2022',N'Gigabyte',N'Laptop'),
+
+(74,N'i5, 1235U, 1.3GHz', N'8 GB, DDR4 (Onboard), 3200 MHz', N'256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', N'15.6"Full HD (1920 x 1080) 120Hz', N'Card tích hợp, Intel UHD', N'HDMI, 1 x USB 2.0, 2 x USB 3.2, Jack tai nghe 3.5 mm', N'               ', N'Windows 11 Home SL', N'Vỏ nhựa', N'Dài 358.5 mm - Rộng 235.56 mm - Dày 18.9 mm - Nặng 1.9 kg', N'2022',N'Dell',N'Laptop')
+
+select* from DETAILLAP
+--delete from DETAILLAP

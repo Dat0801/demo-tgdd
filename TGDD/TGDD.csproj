@@ -1881,6 +1881,24 @@
     <Content Include="Content\img\product\Laptop\MSI Gaming GF63 Thin 11SC i5 11400H %28664VN%29.jpg" />
     <Content Include="Content\img\product\Laptop\MSI Gaming GF63 Thin 12VE i5 12450H %28460VN%29.jpg" />
     <Content Include="Content\img\product\Laptop\MSI Modern 14 C11M i3 1115G4 %28011VN%29.jpg" />
+    <Content Include="Content\img\product\PC\ASUS AIO A3402WBAK i3.jpg" />
+    <Content Include="Content\img\product\PC\Asus ExpertCenter AIO A3202WBAK i3 1215U 21.45 inch %28WA018W%29.jpg" />
+    <Content Include="Content\img\product\PC\Asus ExpertCenter AIO A5402WVAK i5 1340P 23.8 inch %28BA016W%29.jpg" />
+    <Content Include="Content\img\product\PC\Asus ProArt PA278CV 27 inch 2K IPS.jpg" />
+    <Content Include="Content\img\product\PC\Asus S500SD i5 12400 %28512400050W%29.jpg" />
+    <Content Include="Content\img\product\PC\Asus VG249Q3A 23.8 inch FHD IPS.jpg" />
+    <Content Include="Content\img\product\PC\HP AIO 22 dd2002d i5 1235U 21.5 inch %286K7G1PA%29.jpg" />
+    <Content Include="Content\img\product\PC\HP AIO 22 dd2002d i5.jpg" />
+    <Content Include="Content\img\product\PC\HP AIO ProOne 240 G9 i3 1215U 23.8 inch %286M3T0PA%29.jpg" />
+    <Content Include="Content\img\product\PC\HP AIO ProOne 240 G9 i5 1235U 23.8 inch %286M3V2PA%29.jpg" />
+    <Content Include="Content\img\product\PC\HP ProOne 440 G9 AIO i5 12500T 23.8 inch %286M3X9PA%29.jpg" />
+    <Content Include="Content\img\product\PC\HP ProOne 440 G9 AIO i5.jpg" />
+    <Content Include="Content\img\product\PC\HP Slim Desktop S01 pF2025d i5 12400 %286K7A3PA%29.jpg" />
+    <Content Include="Content\img\product\PC\iMac 24 inch 2023 4.5K-8-core GPU.jpg" />
+    <Content Include="Content\img\product\PC\Màn hình Asus Gaming ROG Strix XG249CM 23.8 inch.jpg" />
+    <Content Include="Content\img\product\PC\Màn hình Asus ProArt PA248QV 24.1 inch FHD.jpg" />
+    <Content Include="Content\img\product\PC\Màn hình Asus TUF Gaming VG249Q1A 23.8 inch FHD.jpg" />
+    <Content Include="Content\img\product\PC\Màn hình Asus VZ24EHE-R 23.8 inch.jpg" />
     <Content Include="Content\img\product\Phone\iPhone 11.jpg" />
     <Content Include="Content\img\product\Phone\iPhone 14.jpg" />
     <Content Include="Content\img\product\Phone\iPhone-14-Pro.jpg" />
@@ -1908,6 +1926,46 @@
     <Content Include="Content\img\product\Phone\Xiaomi Redmi 12C.jpg" />
     <Content Include="Content\img\product\Phone\Xiaomi Redmi A1.jpg" />
     <Content Include="Content\img\product\Phone\Xiaomi Redmi Note 12 4G.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\AVAplus 15W JP399.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\AVA_ 15W DS2107.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Baseus 20W PPCXM06.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Baseus 20W PPCXZ10.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Baseus Comet 22.5W PPMD10 kèm Cáp Lightning và Type C.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Baseus ioTa 220V_140W BPE14A.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Cáp Lightning 1m Baseus CoolPlay CB000044.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Cáp Lightning 1m Xmobile DR-L001X.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Cáp Type C 1m Baseus CoolPlay CB000046.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Cáp Type C 2m AVA+ DS08C.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge %28USB-C%29 Apple MTJV3.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth Chụp Tai JBL Tune 520BT.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth Chụp Tai Zadez GP-803B.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth True Wireless AVAplus Buds Life Air 2.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth True Wireless AVAplus FreeGo A20.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Tai nghe Bluetooth True Wireless HAVIT TW945.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Xmobile 20W DS611.jpg" />
+    <Content Include="Content\img\product\Phụ Kiện\Xmobile 22.5W S2032.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch SE 2023 GPS plus Cellular 44mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 8 GPS 41mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 8 GPS 45mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 9 GPS  41mm .jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 9 GPS  45mm .jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 9 GPS plus Cellular 41mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Series 9 GPS plus Cellular 45mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Ultra 2 GPS _ Cellular 49mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Apple Watch Ultra GPS _ Cellular 49mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\BeFit B3s 44mm dây silicone.jpg" />
+    <Content Include="Content\img\product\SmartWatch\BeFit Sporty 2 44.5mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\BeFit Watch Ultra 52.6mm dây silicone.jpg" />
+    <Content Include="Content\img\product\SmartWatch\BeFit Watch Ultra S 52.1mm dây silicone.jpg" />
+    <Content Include="Content\img\product\SmartWatch\BeFit WatchS 45mm dây silicone.jpg" />
+    <Content Include="Content\img\product\SmartWatch\imoo Z1 41mm dây TPU Hồng nhạt.jpg" />
+    <Content Include="Content\img\product\SmartWatch\imoo Z1 41mm dây TPU Xanh dương.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Samsung Galaxy Watch5 Pro 45mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Samsung Galaxy Watch6 Classic 47mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Samsung Galaxy Watch6 Classic LTE 47mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Samsung Galaxy Watch6 LTE 44mm.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Xiaomi Mi Band 8 dây TPU.jpg" />
+    <Content Include="Content\img\product\SmartWatch\Xiaomi Watch 2 Pro 46 mm dây silicone.jpg" />
     <Content Include="Content\img\product\Tablet\iPad 10 WiFi.jpg" />
     <Content Include="Content\img\product\Tablet\iPad 9 WiFi.jpg" />
     <Content Include="Content\img\product\Tablet\iPad Air 5 M1 5G.jpg" />
@@ -1945,7 +2003,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -2207,6 +2267,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\ThongTinKhachHang.cshtml" />
+    <Content Include="Views\Product\ViewLap.cshtml" />
+    <Content Include="Views\Product\ViewAnother.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

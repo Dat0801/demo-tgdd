@@ -1,9 +1,11 @@
 ﻿@model MyClass.Models.Product
+
 @{
-    ViewBag.Title = "DetailPro";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ViewLap";
+    Layout = "~/Views/_ViewStart.cshtml";
 }
-    <div class="container" style="padding-top:30px;">
+
+ <div class="container" style="padding-top:30px;">
         <h3 class="card-title-h3">@Html.DisplayFor(model => model.ProductName)</h3>
         <div class="row">
             <div class="col">
@@ -14,7 +16,7 @@
             <div class="col">
                 <div class="block__promo">
                     <div class="pr-top">
-                        <h5 class="pr-txtb" style="font-weight:bold;color:blue;">Khuyến mãi </h5>
+                        <p class="pr-txtb" style="font-weight:bold;color:blue;">Khuyến mãi </p>
                         <i class="pr-txt">Giá và khuyến mãi có thể kết thúc sớm hơn dự kiến</i>
                     </div>
                     <div class="pr-content">
@@ -55,58 +57,63 @@
 
         <div class="row">
             <div class="col" style="padding-top:10px;">
-                <h5>
-                    <b>Thông số kỹ thuật:</b>
-                </h5>
+                <p>
+                    Thông tin sản phẩm:<br />
+                    @Html.DisplayFor(model => model.ProductDes)
+                </p>
                 <table class="table table-bordered table-responsive">
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.ManHinh)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.ManHinh)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.CPU)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.CPU)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.HeDieuHanh)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.HeDieuHanh)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.RAM)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.RAM)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.Chip)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.Chip)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.OCung)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.OCung)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.RAM)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.RAM)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.ManHinh)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.ManHinh)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.DungLuong)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.DungLuong)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.CardMH)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.CardMH)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.KetNoi)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.KetNoi)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.CongKn)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.CongKn)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.Sim)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.Sim)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.DacBiet)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.DacBiet)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.CamSau)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.CamSau)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.HeDieuHanh)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.HeDieuHanh)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.CamTruoc)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.CamTruoc)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.ThietKe)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.ThietKe)</td>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.Pin_Sac)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.Pin_Sac)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.kt_kl)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.kt_kl)</td>
                     </tr>
                     <tr>
-                        <td>@Html.DisplayNameFor(model => model.DetailPro.Hang)</td>
-                        <td>@Html.DisplayFor(model => model.DetailPro.Hang)</td>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.thoidiemramat)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.thoidiemramat)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DetailLap.Hang)</td>
+                        <td>@Html.DisplayFor(model => model.DetailLap.Hang)</td>
                     </tr>
                 </table>
             </div>
             <div class="col">
-                <div style="padding-top:10px;">
-                    <h5 class="pr-txtb" style="font-weight:bold;color:blue;">Bảo hành </h5>
+                <div style="padding-top:30px;">
+                    <p class="pr-txtb" style="font-weight:bold;color:blue;">Bảo hành </p>
                     <ul class="policy__list border">
                         <li>
                             <p>1 đổi 1 trong <b>30 ngày</b> đối với sản phẩm lỗi  tại 3206 siêu thị toàn quốc</p>
@@ -120,5 +127,3 @@
             </div>
         </div>
     </div>
-
-
