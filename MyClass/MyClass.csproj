@@ -49,6 +49,7 @@
     <Compile Include="DAO\BrandDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="Models\DetailLap.cs" />
     <Compile Include="Models\DetailPro.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\OrderDetail.cs" />

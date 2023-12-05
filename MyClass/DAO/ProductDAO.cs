@@ -42,12 +42,32 @@ namespace MyClass.DAO
 
         public Product getData(int ProductID)
         {
+            float a = 0; char phone_Tab = 'a';
             try
             {
-                string query = "Select distinct * from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID AND Product.ProductID = '" + ProductID + "'";
-                DataTable dt = DataProvider.Instance.ExecuteQuery(query);
-                var Product = new Product(dt.Rows[0]);
-                return Product;
+                string check = "select * from product where ProductID = " + ProductID;
+                DataTable dtchk = DataProvider.Instance.ExecuteQuery(check);
+                var Productchk = new Product(dtchk.Rows[0], 1);
+                if(Productchk.MetaKeywords == "Phone"||Productchk.MetaKeywords == "Tablet")
+                {
+                    string query = "Select distinct * from Product, DETAILPRO where Product.ProductID = DETAILPRO.ProductID AND Product.ProductID = '" + ProductID + "'";
+                    DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+                    var Product = new Product(dt.Rows[0],phone_Tab);
+                    return Product;
+                }
+                else
+                    if(Productchk.MetaKeywords == "Laptop")
+                    {
+                        string query = "Select distinct * from Product, DETAILLAP where Product.ProductID = DETAILLAP.ProductID AND Product.ProductID = '" + ProductID + "'";
+                        DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+                        var Product = new Product(dt.Rows[0],a);
+                        return Product;
+                    }
+
+                string query1 = "Select  from Product where  ProductID = '" + ProductID + "'";
+                DataTable dt1 = DataProvider.Instance.ExecuteQuery(query1);
+                var Product1 = new Product(dt1.Rows[0], 1);
+                return Product1;                
             }
             catch
             {

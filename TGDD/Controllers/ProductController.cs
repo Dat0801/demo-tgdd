@@ -29,7 +29,12 @@ namespace TGDD.Controllers
         public ActionResult Detail(int ProductID)
         {
             var pro = ProductDAO.Instance.getData(ProductID);
-            return View(pro);
+            if (pro.MetaKeywords == "Phone" || pro.MetaKeywords == "Tablet")
+                return View("Detail",pro);
+            else
+                if (pro.MetaKeywords == "Laptop")
+                    return View("ViewLap", pro);
+            return View("ViewAnother", pro);
         }
     }
 }

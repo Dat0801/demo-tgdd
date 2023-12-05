@@ -166,7 +166,7 @@ namespace MyClass.DAO
                     adapter.Fill(dt);
                     foreach (DataRow row in dt.Rows)
                     {
-                        var product = new Product(row);
+                        var product = new Product(row,1);
                         listPrd.Add(product);
                     }
                 }

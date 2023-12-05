@@ -39,7 +39,10 @@ namespace MyClass.Models
         public string MetaDescriptions { get; set; }
         public bool Active { get; set; }
         public virtual DetailPro DetailPro { get; set; }
-        public Product(DataRow row,int a)
+        public virtual DetailLap DetailLap { get; set; }
+
+
+        public Product(DataRow row,int data)
         {
             this.ProductID = (int)row["ProductID"];
             this.ProductName = row["ProductName"].ToString();
@@ -62,7 +65,7 @@ namespace MyClass.Models
         }
 
 
-        public Product(DataRow row, string a)
+        public Product(DataRow row, string lichsumuahang)
         {
             this.ProductID = (int)row["ProductID"];
             this.ProductName = row["ProductName"].ToString();
@@ -71,7 +74,7 @@ namespace MyClass.Models
             this.PromotionPrice = (decimal)row["PromotionPrice"];
             this.MetaKeywords = row["MetaKeywords"].ToString();
         }
-        public Product(DataRow row)
+        public Product(DataRow row, char a)
         {
             this.ProductID = (int)row["ProductID"];
             this.ProductName = row["ProductName"].ToString();
@@ -108,6 +111,47 @@ namespace MyClass.Models
             this.DetailPro.Pin_Sac = row["Pin_Sac"].ToString();
             this.DetailPro.Hang = row["Hang"].ToString();
             this.DetailPro.Loai = row["Loai"].ToString();
+
+        }
+
+        public Product(DataRow row, float a)
+        {
+            this.ProductID = (int)row["ProductID"];
+            this.ProductName = row["ProductName"].ToString();
+            this.MetaTitle = row["MetaTitle"].ToString();
+            this.ProductDes = row["ProductDes"].ToString();
+            this.CatID = (int)row["CatID"];
+            this.BrandID = (int)row["BrandID"];
+            this.Price = (decimal)row["Price"];
+            this.PromotionPrice = (decimal)row["PromotionPrice"];
+            this.ProductImage = row["ProductImage"].ToString();
+            this.Quantity = (int)row["Quantity"];
+            this.Warranty = (int)row["Warranty"];
+            this.CreatedDate = (DateTime)row["CreatedDate"];
+            this.CreatedBy = row["CreatedBy"].ToString();
+            this.ModifiedDate = (DateTime)row["ModifiedDate"];
+            this.ModifiedBy = row["ModifiedBy"].ToString();
+            this.MetaKeywords = row["MetaKeywords"].ToString();
+            this.MetaDescriptions = row["MetaDescriptions"].ToString();
+            this.Active = (bool)row["Active"];
+
+            this.DetailLap = new DetailLap();
+
+            this.DetailLap.ProductID = this.ProductID;
+            this.DetailLap.IDDetail = (int)row["IDDetail"];
+            this.DetailLap.CPU = row["CPU"].ToString();
+            this.DetailLap.RAM = row["RAM"].ToString();
+            this.DetailLap.OCung = row["OCung"].ToString();
+            this.DetailLap.ManHinh = row["ManHinh"].ToString();
+            this.DetailLap.CardMH = row["CardMH"].ToString();
+            this.DetailLap.CongKn = row["CongKetNoi"].ToString();
+            this.DetailLap.DacBiet = row["DacBiet"].ToString();
+            this.DetailLap.HeDieuHanh = row["HeDieuHanh"].ToString();
+            this.DetailLap.ThietKe = row["ThietKe"].ToString();
+            this.DetailLap.kt_kl = row["KichThuoc_Kl"].ToString();
+            this.DetailLap.thoidiemramat = row["ThoiDiemRaMat"].ToString();
+            this.DetailLap.Hang = row["Hang"].ToString();
+            this.DetailLap.Loai = row["Loai"].ToString();
 
         }
         public Product() { }
